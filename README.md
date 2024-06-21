@@ -16,7 +16,7 @@ This is my second brain that knows my past, tracks things that I am doing in pre
 Motivation  - This is just a temporary structure of the second brain. Just so that we a dock for every app we will make moving on.
 Jan 21st    - If I keep looking at videos to make the best dashboard, I will be old.
             - I will just make a layout for now. 
-[Read the documentation for the Base Layout](/App_Documentation/BaseLayout.md)
+[Read the documentation for the Base Layout](/App_Documentation/BaseLayout/BaseLayout.md)
 
 
 # Second App - Commit Tracker
