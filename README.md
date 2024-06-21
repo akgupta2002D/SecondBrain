@@ -18,10 +18,15 @@ Jan 21st    - If I keep looking at videos to make the best dashboard, I will be 
             - I will just make a layout for now. 
 [Read the documentation for the Base Layout](/App_Documentation/BaseLayout/BaseLayout.md)
 
+# Second App - Authentication
+There will be a simple implementation of an authentiation system based on Django Auth.
+It will allow users to register, login, and logout of the app.
+[Read the documentation for the Authentication Layout](/App_Documentation/Authentication/authentication.md)
 
-# Second App - Commit Tracker
+
+# Third App - Commit Tracker
 This is a simple add-on like app that just tracks my commit messages.
 
-# Third App - Todo App
+# Fourth App - Todo App
 First App I will be working on will be a TodoApp that helps me work effectively.
 For each apps, here are the steps I will follow:
