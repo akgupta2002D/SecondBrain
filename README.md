@@ -2,8 +2,8 @@
 This is my second brain that knows my past, tracks things that I am doing in present, and inspires/stores my aspirations for future. I will be creating small apps for each feature I want in my secondBrain.
 
 # Rules
--> I recognize this a long term project and I want to build this for my life and not just for getting a job.
--> I will commit atleast once everyday on this repository as a show of commitment.
+* I recognize this a long term project and I want to build this for my life and not just for getting a job.
+* I will commit atleast once everyday on this repository as a show of commitment.
 
 # Steps to create each app
 1. Write a motivation behind why I want to create this app. 
@@ -12,9 +12,16 @@ This is my second brain that knows my past, tracks things that I am doing in pre
 4. Create a Figma Diagram regarding the UI/UX.
 5. Start Building the app - document along the way.
 
-# First App - Commit Tracker
+# First App - The Base Layout
+Motivation  - This is just a temporary structure of the second brain. Just so that we a dock for every app we will make moving on.
+Jan 21st    - If I keep looking at videos to make the best dashboard, I will be old.
+            - I will just make a layout for now. 
+[Read the documentation for the Base Layout](/App_Documentation/BaseLayout.md)
+
+
+# Second App - Commit Tracker
 This is a simple add-on like app that just tracks my commit messages.
 
-# Second App - Todo App
+# Third App - Todo App
 First App I will be working on will be a TodoApp that helps me work effectively.
 For each apps, here are the steps I will follow:
