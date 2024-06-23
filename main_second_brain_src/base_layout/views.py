@@ -3,5 +3,8 @@ from django.shortcuts import render, HttpResponse
 # Create your views here.
 
 
-def base(request):
-    return HttpResponse("Hello, World!")
+def home(request):
+    context = {
+        "name": "Ankit"
+    }
+    return render(request, "base_layout/home.html", context)

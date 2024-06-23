@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="{% static 'accounts/register.css' %}" /> -->
+    <!-- The above is how you can relate css to this folder.  -->
+    <title>{%block title%}Base Layout{%endblock%}</title>
+</head>
+
+<body>
+    <!-- Everything inside the container block is always present as it is inherited in everyother html file -->
+    <div class="container">
+        <!-- To check if it is authenticated -->
+        {% if user.is_authenticated %}
+        <!-- Do this -->
+        {% else %}
+        <!-- Do this instead -->
+        {% endif %}
+        <div class="content">
+            <!-- Your page content goes here -->
+            <!-- The if statement for messages is responsible for loading 
+        various alert messages in homepage -->
+            <!-- Since data is send as a dictionary, use for loop to go through each  -->
+            {% if messages %} {%for message in messages%}
+            <div class="alert alert-{{message.tags}}">{{message}}</div>
+            {%endfor %} {% endif %}
+            <!--  -->
+            <h2>Welcome to Dilliraj Secondary App</h2>
+            <p>This is the content area where your page content will be shown.</p>
+        </div>
+        <div class="space-for-other-apps">
+            {%block body %}
+
+            {%endblock%}
+        </div>
+
+    </div>
+</body>
+
+</html>

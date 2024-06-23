@@ -1,0 +1,80 @@
+*{
+    margin: 0px;
+    padding: 0px; 
+}
+
+/* styles.css */
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../fonts/PostNoBillsJaffna-ExtraBold.woff') format('woff'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+:root {
+    --sidebarColor: rgba(45, 43, 43, 0.89);
+    --navbar: #2D2B2B;
+}
+
+#base_container{
+    display: flex;
+    height: 100vh;
+}
+
+.base_sidebar{
+    display: flex;
+    flex-direction: column;
+    min-width: 70px;
+    background-color: var(--sidebarColor) ;
+    align-items: center;
+}
+
+.base_sidebar img{
+    width: 60px;
+    transform: scaleX(-1);
+    padding-top: 15px;
+}
+
+.base_navbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 250px;
+    background-color: var(--navbar);
+}
+
+.base_navbar h2{
+    font-size: 36px;
+    padding-top: 22px;
+    color: white;
+    font-family: 'CustomFont', sans-serif;
+}
+
+.app_display_area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.base_logo img{
+    padding-top: 17px;
+    width: 80px;
+    
+}
+
+/* Navbar Toggle */
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .base_navbar {
+        transition: transform 0.3s ease;
+    }
+
+    .base_navbar.hidden {
+        transform: translateX(-100%);
+    }
+}

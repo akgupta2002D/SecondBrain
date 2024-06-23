@@ -1,0 +1,28 @@
+{% extends 'base_layout/base.html' %}
+{% load static %}
+{%block css%}
+
+{%endblock%}
+{%block title%} Second Brain {%endblock%}
+
+{%block body%}
+<div id="base_container">
+    <div class="base_sidebar">
+        <img id="toogleNavBar" src="{% static 'base_layout/images/arrow_white.png' %}" alt="">
+    </div>
+    <div class="base_navbar" id="base_navbar">
+        <h2>SECOND BRAIN</h2>
+    </div>
+    <div class="app_display_area">
+        <div class="base_logo">
+            <img src="{% static 'base_layout/images/LogoMain.png' %}" alt="">
+
+        </div>
+    </div>
+</div>
+
+{%endblock %}
+
+{%block script%}
+<script src="{% static 'base_layout/js/base.js' %}"></script>
+{%endblock%}
