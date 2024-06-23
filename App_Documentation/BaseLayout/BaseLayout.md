@@ -20,6 +20,7 @@ This is just a temporary structure of the second brain. Just so that we have a d
 ///
 <img align="center" src="MobileFrames.png" alt="DesktopFrame" width="400"/>
 
+
 ### Description
 - **Main Dashboard**: 
 
