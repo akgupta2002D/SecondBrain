@@ -4,17 +4,20 @@
 
 
 {%block css%}
-<link rel="stylesheet" href="{% static 'custom_auth/css/form.css' %}" />
+<link rel="stylesheet" href="{% static 'custom_auth/css/register.css' %}" />
 {%endblock%}
 
 
 {%block app%}
-<h2>Register</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Register</button>
-</form>
+<div class="form_container_main">
+    <h2>Register</h2>
+    <form method="post" class="form_container_register">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="button_submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
 
 {%endblock %}
 
