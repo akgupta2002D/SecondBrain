@@ -28,11 +28,13 @@
     min-width: 70px;
     background-color: var(--DarkColorMain) ;
     align-items: center;
+    position: fixed;
+    height: 100%;
 }
 
 .base_sidebar img{
     width: 60px;
-    transform: scaleX(-1);
+    /* transform: scaleX(1); */
     padding-top: 15px;
     transition: transform 0.5s ease;
 }
@@ -64,6 +66,7 @@
     flex-direction: column;
     align-items: center;
     flex: 1;
+    margin-left: 70px;
     
 }
 
@@ -79,5 +82,5 @@
 }
 
 .base_sidebar img.flipped {
-    transform: scaleX(1);
+    transform: scaleX(-1);
 }

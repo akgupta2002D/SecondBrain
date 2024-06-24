@@ -1,0 +1,21 @@
+/* Small devices (phones, 480px and down) */
+@media (max-width: 620px) {
+
+    .base_navbar {
+        margin-top: 90px;
+    }
+   
+    .base_sidebar{
+        min-width: 60px;
+    }
+
+    .base_sidebar img{
+        width: 50px;
+        padding-top: 25px;
+    }
+
+    .app_display_area{
+        margin-left: 60px;
+    }
+
+}
