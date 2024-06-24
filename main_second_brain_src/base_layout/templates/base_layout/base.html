@@ -14,26 +14,12 @@
 </head>
 
 <body>
-    <!-- Everything inside the container block is always present as it is inherited in everyother html file -->
-    <div class="container">
+    {%block body %}
 
 
-        <!-- To check if it is authenticated -->
-        {% if user.is_authenticated %}
-        <!-- Do this -->
-        {% else %}
-        <!-- Do this instead -->
-        {% endif %}
-
-    </div>
-    <div class="space-for-other-apps">
-        {%block body %}
-        <p>Welcome to Second Brain! {{name}} </p>
-        {%endblock%}
-    </div>
-
-    </div>
+    {%endblock%}
 </body>
+<script src="{% static 'base_layout/js/base.js' %}"> </script>
 {%block script%}{%endblock%}
 
 </html>

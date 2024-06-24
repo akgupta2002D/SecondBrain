@@ -1,0 +1,21 @@
+{% extends 'base_layout/home.html' %}
+{% load static %}
+{%block title%} Logout {%endblock%}
+
+
+{%block css%}
+<link rel="stylesheet" href="{% static 'custom_auth/css/form.css' %}" />
+{%endblock%}
+
+
+{%block app%}
+<h2>Logout</h2>
+<p>You have been logged out. <a href="{% url 'login' %}">Login again</a></p>
+
+{%endblock %}
+
+
+{%block script%}
+
+
+{%endblock%}

@@ -1,0 +1,29 @@
+{% extends 'base_layout/home.html' %}
+{% load static %}
+{%block title%} Login {%endblock%}
+
+
+{%block css%}
+<link rel="stylesheet" href="{% static 'custom_auth/css/form.css' %}" />
+
+{%endblock%}
+
+
+
+{%block app%}
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Login</button>
+</form>
+<a href="{% url 'register' %}">Register</a>
+{%endblock %}
+
+
+
+
+{%block script%}
+
+
+{%endblock%}
