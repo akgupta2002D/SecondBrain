@@ -32,14 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "auth.apps.AuthConfig",
-    "base_layout.apps.BaseLayoutConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "custom_auth.apps.CustomAuthConfig",
+    "base_layout.apps.BaseLayoutConfig",
 ]
 
 MIDDLEWARE = [
@@ -130,7 +130,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = 'auth.CustomUser'
+AUTH_USER_MODEL = 'custom_auth.CustomUser'
 
 
 LOGIN_URL = 'login'
