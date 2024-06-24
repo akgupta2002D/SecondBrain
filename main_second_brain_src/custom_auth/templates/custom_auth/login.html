@@ -11,13 +11,16 @@
 
 
 {%block app%}
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Login</button>
-</form>
-<a href="{% url 'register' %}">Register</a>
+<div class="form_container_main">
+    <h2>Login</h2>
+    <form method="post" class="form_container">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="button_submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+</div>
+
 {%endblock %}
 
 
