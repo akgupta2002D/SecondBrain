@@ -20,6 +20,10 @@ This is just a temporary structure of the second brain. Just so that we have a d
 ///
 <img align="center" src="MobileFrames.png" alt="DesktopFrame" width="400"/>
 
+## Change
+* I changed the mobile design to keep it similar to that of desktop. The earlier version of mobile design needed a lot of changes and made things complicated. The current UI keeps it simple and navigable.
+<img align="center" src="MobileFrames.png" alt="DesktopFrame" width="400"/>
+
 
 ### Description
 - **Main Dashboard**: 

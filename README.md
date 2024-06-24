@@ -17,12 +17,13 @@ Motivation  - This is just a temporary structure of the second brain. Just so th
 Jan 21st    - If I keep looking at videos to make the best dashboard, I will be old.
             - I will just make a layout for now. 
 [Read the documentation for the Base Layout](/App_Documentation/BaseLayout/BaseLayout.md)
+Completed: 23rd June
 
 # Second App - Authentication
 There will be a simple implementation of an authentiation system based on Django Auth.
 It will allow users to register, login, and logout of the app.
 [Read the documentation for the Authentication Layout](/App_Documentation/Authentication/authentication.md)
-
+Completed: 24th June
 
 # Third App - Commit Tracker
 This is a simple add-on like app that just tracks my commit messages.

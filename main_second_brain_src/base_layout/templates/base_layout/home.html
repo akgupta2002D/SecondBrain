@@ -1,7 +1,7 @@
 {% extends 'base_layout/base.html' %}
 {% load static %}
 {%block css%}
-
+<link rel="stylesheet" href="{% static 'base_layout/css/home_welcome_screen.css' %}" />
 {%endblock%}
 {%block title%} Second Brain {%endblock%}
 
@@ -10,9 +10,9 @@
     <div class="base_sidebar">
         <img id="navbar_toogle" src="{% static 'base_layout/images/arrow_white.png' %}" alt="">
         {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Logout</a>
+        <a id="login_logout_link_sidebar" href="{% url 'logout' %}">Logout</a>
         {% else %}
-        <a href="{% url 'login' %}">Login</a>
+        <a id="login_logout_link_sidebar" href="{% url 'login' %}">Login</a>
         {% endif %}
     </div>
     <div class="base_navbar" id="base_navbar">
@@ -25,7 +25,9 @@
         </div>
 
         {%block app%}
-
+        <div class="welcome_user_tab">
+            <h2>Welcome! {{user.firstname}} {{user.lastname}}</h2>
+        </div>
         {%endblock %}
     </div>
 </div>

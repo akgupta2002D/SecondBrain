@@ -39,6 +39,11 @@
     color: white;
 }
 
+#login_logout_link_sidebar{
+    margin-top:auto;
+    margin-bottom: 20px;
+}
+
 .base_sidebar img{
     width: 60px;
     /* transform: scaleX(1); */
