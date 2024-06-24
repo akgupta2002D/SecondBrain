@@ -18,4 +18,8 @@
         margin-left: 60px;
     }
 
+    .base_navbar.visible {
+        transform: translateX(60px); /* Slide in the navbar */
+    }
+
 }
