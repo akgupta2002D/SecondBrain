@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "custom_auth.apps.CustomAuthConfig",
     "base_layout.apps.BaseLayoutConfig",
+    "question_extractor_ocr.apps.QuestionExtractorOcrConfig",
 ]
 
 MIDDLEWARE = [
