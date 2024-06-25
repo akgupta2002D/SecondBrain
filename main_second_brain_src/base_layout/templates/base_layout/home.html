@@ -17,6 +17,24 @@
     </div>
     <div class="base_navbar" id="base_navbar">
         <h2>SECOND BRAIN</h2>
+        <div class="navbar_app_links_container">
+            <button class="navbar_button">
+                Public profile
+            </button>
+            <button class="navbar_button">
+                Account
+            </button>
+            <button class="navbar_button">
+                Appearance
+            </button>
+            <button class="navbar_button">
+                Accessibility
+            </button>
+            <button class="navbar_button">
+
+                Notifications
+            </button>
+        </div>
     </div>
     <div class="app_display_area">
         <div class="base_logo">
@@ -25,18 +43,30 @@
         </div>
 
         {%block app%}
-        <div class="welcome_user_tab">
-            <h2>Welcome! {{user.firstname}} {{user.lastname}}</h2>
-        </div>
+        <div class="app_content_wrapper">
 
-        <div class="card">
-            <div class="card_header">My Skills</div>
-            <div class="card_body">
-                <p>Hey</p>
-                <p>How are you?</p>
+            <div class="card">
+                <div class="card_header">My Skills</div>
+                <div class="card_body">
+                    <p>Hey</p>
+                    <p>How are you?</p>
+                </div>
+            </div>
+
+            <div class="profile_card">
+                <div class="profile_image_container">
+                    {% if user.profile and user.profile.image %}
+                    <img class="profile_image" src="{{ user.profile.image.url }}" alt="Profile image">
+                    {% else %}
+                    <p>Profile image not available.</p>
+                    {% endif %}
+                </div>
+                <div class="profile_text_container">
+                    <p class="profile_name"> {{user.firstname}} {{user.lastname}}</p>
+                    <p class="profile_text">{{user.role}}</p>
+                </div>
             </div>
         </div>
-
         {%endblock %}
     </div>
 </div>

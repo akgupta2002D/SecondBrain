@@ -1,4 +1,11 @@
-.welcome_user_tab{
-    margin-top: 6rem;
-    color: var(--DarkColorMain);
+
+.app_content_wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
+
+
