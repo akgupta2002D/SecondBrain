@@ -18,3 +18,6 @@
 - [ ] There is a bug, when I tried loading the OCR html, it is showing login elements in it.
 - [ ]  Edit the homepage to have more data and information, create a good layout - version 2
 - [ ]  CSS is getting out of hand
+- [ ]  Sphinx - for python documentation
+- [ ]  Look into contributing in Django's Open Source
+- [ ]  Learn to navigate python documentation: https://www.python.org/doc/

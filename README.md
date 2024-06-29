@@ -6,11 +6,11 @@ This is my second brain that knows my past, tracks things that I am doing in pre
 * I will commit atleast once everyday on this repository as a show of commitment.
 
 # Steps to create each app
-1. Write a motivation behind why I want to create this app. 
-2. Write a rough specification in text file. Include how it is intended to work and other relevant things.
-3. Create a FlowChart regarding the app logic - Also include how it will sit in the overall secondBrain App.
+1. Write a motivation behind why I want to create this app. Evaluate feasibility of this app.
+2. Write a rough specification in text file. Include how it is intended to work and other relevant things. 
+3. Create a FlowChart regarding the app logic - Also include how it will sit in the overall secondBrain App. This will result in creating a flowchart that clearly defines views, URLs, templates required. We would also utilize UML diagrams to enhance the planning process. This phase would also require me to create the mockups for models.
 4. Create a Figma Diagram regarding the UI/UX.
-5. Start Building the app - document along the way.
+5. Start Building the app - document along the way. 
 
 # First App - The Base Layout
 Motivation  - This is just a temporary structure of the second brain. Just so that we a dock for every app we will make moving on.
