@@ -1,8 +1,11 @@
 # Base Layout App
 
 ## Motivation
+The base layout has been completed for both mobile and desktop version.
+*Date:* Jun 29th
+
 This is just a temporary structure of the second brain. Just so that we have a dock for every app we will make moving on.
-*Date:* Jan 21st  
+*Date:* Jun 21st  
 *Note:* If I keep looking at videos to make the best dashboard, I will be old. I will just make a layout for now.
 
 ## Specifications
@@ -13,16 +16,17 @@ This is just a temporary structure of the second brain. Just so that we have a d
 - Placeholder sections for future content.
 
 ## App Logic and Specification in FlowChart
-![Base Layout Flowchart](/App_Documentation/BaseLayout/BaseLayout.drawio.png) 
+
+<img src="BaseLayout.drawio.png" alt="DesktopFrame" width="600"/>
 
 ## UI/UX Diagram using Figma
-<img align="center" src="DesktopFrame.png" alt="DesktopFrame" width="400"/>
-///
-<img align="center" src="MobileFrames.png" alt="DesktopFrame" width="400"/>
+<img src="BaseLayout.jpeg" alt="BaseLayout" width="600"/>
 
 ## Change
 * I changed the mobile design to keep it similar to that of desktop. The earlier version of mobile design needed a lot of changes and made things complicated. The current UI keeps it simple and navigable.
-<img align="center" src="MobileFrames.png" alt="DesktopFrame" width="400"/>
+* Link to Old Navbar Design [Version 2: Navbar for Mobile](Navbar_Mobile.png) 
+* Link to Old Navbar Design [Version 1: Navbar for Mobile](../../archive/baseLayoutChanges/Version1/MobileFrames.png) 
+
 
 
 ### Description

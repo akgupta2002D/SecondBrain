@@ -14,7 +14,10 @@ This is out of courtesy of creating a webapp. I have invested a good amount of t
 ![Authentication App Flowchart](/App_Documentation/Authentication/SecondBrainiAuthentication.drawio.png) 
 
 ## UI/UX Diagram using Figma
-
+* Login View
+<img src="LoginView.png" alt="DesktopFrame" width="600"/>
+* Register View
+<img src="RegisterView.png" alt="DesktopFrame" width="600"/>
 
 ### Description
 - **Main Dashboard**: 
