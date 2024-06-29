@@ -16,9 +16,14 @@
 - [ ] Plan an effective way to add new things and not have to style everything again, create templates
 - [x] Plan the next app 
 - [ ] There is an issue with the logo being "position: fixed" causing divs in app section of screen require a margin of 70px, solve this.
-- [ ] There is a bug, when I tried loading the OCR html, it is showing login elements in it.
+- [x] There is a bug, when I tried loading the OCR html, it is showing login elements in it.
 - [ ]  Edit the homepage to have more data and information, create a good layout - version 2
+- [ ]  
+## General Problems and Todo
 - [ ]  CSS is getting out of hand
-- [ ]  Sphinx - for python documentation
+- [x]  Sphinx - for python documentation
 - [ ]  Look into contributing in Django's Open Source
 - [ ]  Learn to navigate python documentation: https://www.python.org/doc/
+- [ ]  Continue Learning about Sphinx
+- [ ]  Integrate Sphinx to this project or conclude that it isn't relevant.
+- [ ]  Think about a system which displays my calendar in this app, and adds items automatically upon adding to lets say, no yet created app, calendar reminders app.
