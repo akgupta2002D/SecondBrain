@@ -11,12 +11,10 @@ This is out of courtesy of creating a webapp. I have invested a good amount of t
 - Register
 
 ## App Logic and Specification in FlowChart
-![Authentication App Flowchart](/App_Documentation/Authentication/SecondBrainiAuthentication.drawio.png) 
+<img src="SecondBrainiAuthentication.drawio.png" alt="DesktopFrame" width="600"/>
 
 ## UI/UX Diagram using Figma
-* Login View
 <img src="LoginView.png" alt="DesktopFrame" width="600"/>
-* Register View
 <img src="RegisterView.png" alt="DesktopFrame" width="600"/>
 
 ### Description
