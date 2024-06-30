@@ -25,8 +25,10 @@
 - [x]  Sphinx - for python documentation
 - [ ]  Look into contributing in Django's Open Source
 - [ ]  Learn to navigate python documentation: https://www.python.org/doc/
-- [ ]  Continue Learning about Sphinx
-- [ ]  Integrate Sphinx to this project or conclude that it isn't relevant.
+- [x]  Continue Learning about Sphinx
+- [x]  Integrate Sphinx to this project or conclude that it isn't relevant.
 - [ ]  Think about a system which displays my calendar in this app, and adds items automatically upon adding to lets say, no yet created app, calendar reminders app.
 - [ ]  Our App fails if there are superuser with same emails. So, need to check if this needs fixing.
 - [x]  Profile model isn't working as intended
+- [ ]  Learn about documentation for html, css, js, and others using sphinx
+- [ ]  There is an issue with sphinx documenting doubles.
