@@ -39,6 +39,20 @@ Development Notes
 Documentation
 -------------
 
+The *custom_auth* app handles user authentication, including registration, login, and profile management. This app extends Django's default authentication system by adding custom user roles and profiles.
+
+Features:
+- Custom user roles (Family, Friends, Acquaintance)
+- Invitation key system for user registration
+- Profile management with image upload and resizing
+
+
+.. toctree::
+   :maxdepth: 2
+
+   modules
+   
+
 Commit History
 ~~~~~~~~~~~~~~
 - *Date*: Jan 21st - Initial commit with basic layout setup.

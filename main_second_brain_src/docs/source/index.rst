@@ -19,8 +19,8 @@ The Second Brain project is designed to streamline the tracking and management o
    :glob:
    :caption: Apps Documentation:
 
-   custom_auth/*
-   base_layout/*
+   custom_auth/custom_auth
+   base_layout/base_layout
 
 Project Goals
 -------------
