@@ -11,6 +11,7 @@
 - [x] Add CSS for login and register
 - [x] Make login and register mobile friendly
 - [x] Add images of frontend to the documentation of the authentication system
+- [ ] There is a problem in the UI ![Error Image](image-1.png)
 ## Welcome Page - home
 - [x] Edit the homepage to have more data and information, create a good layout - version 1
 - [ ] Plan an effective way to add new things and not have to style everything again, create templates
@@ -27,3 +28,5 @@
 - [ ]  Continue Learning about Sphinx
 - [ ]  Integrate Sphinx to this project or conclude that it isn't relevant.
 - [ ]  Think about a system which displays my calendar in this app, and adds items automatically upon adding to lets say, no yet created app, calendar reminders app.
+- [ ]  Our App fails if there are superuser with same emails. So, need to check if this needs fixing.
+- [ ]  Profile model isn't working as intended
