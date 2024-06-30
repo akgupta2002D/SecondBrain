@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "custom_auth.apps.CustomAuthConfig",
     "base_layout.apps.BaseLayoutConfig",
     "question_extractor_ocr.apps.QuestionExtractorOcrConfig",
+    "docs",
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,7 @@ AUTH_USER_MODEL = 'custom_auth.CustomUser'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'homepage'
+
+
+# For Sphinx Documentation
+DOCS_ROOT = os.path.join(BASE_DIR, 'docs/build/html')

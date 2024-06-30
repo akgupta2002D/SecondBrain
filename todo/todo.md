@@ -29,4 +29,4 @@
 - [ ]  Integrate Sphinx to this project or conclude that it isn't relevant.
 - [ ]  Think about a system which displays my calendar in this app, and adds items automatically upon adding to lets say, no yet created app, calendar reminders app.
 - [ ]  Our App fails if there are superuser with same emails. So, need to check if this needs fixing.
-- [ ]  Profile model isn't working as intended
+- [x]  Profile model isn't working as intended

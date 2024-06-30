@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('base_layout.urls')),
     path('authentication/', include('custom_auth.urls')),
     path('ocr/', include('question_extractor_ocr.urls')),
+    path('docs/', include('docs.urls'))
 ]
 
 if settings.DEBUG:
