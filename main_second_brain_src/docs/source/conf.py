@@ -31,6 +31,8 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx_rtd_theme',
     'sphinxcontrib_django',
+    'myst_parser',
+    'sphinx_markdown_tables',
 ]
 
 templates_path = ['_templates']
@@ -42,3 +44,8 @@ exclude_patterns = []
 
 html_theme = 'furo'
 html_static_path = ['_static']
+
+
+# Use Google style docstrings rather than NumPy style
+napoleon_google_docstring = True
+napoleon_numpy_docstring = True

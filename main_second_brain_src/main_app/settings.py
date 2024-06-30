@@ -139,5 +139,5 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'homepage'
 
 
-# For Sphinx Documentation
+# For serving sphinx documentation within the django app server
 DOCS_ROOT = os.path.join(BASE_DIR, 'docs/build/html')
