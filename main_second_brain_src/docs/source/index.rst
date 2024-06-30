@@ -12,9 +12,3 @@ Welcome to Second_Brain's documentation!
 
 
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
