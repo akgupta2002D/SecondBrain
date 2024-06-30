@@ -4,6 +4,22 @@ from PIL import Image
 
 
 class CustomUser(AbstractUser):
+    """
+    Custom user model extending the default AbstractUser model.
+
+    Attributes:
+        FAMILY (str): Role indicating family.
+        FRIENDS (str): Role indicating friends.
+        ACQUAINTANCE (str): Role indicating acquaintances.
+        ROLE_CHOICES (tuple): Tuple of tuples containing the possible roles.
+        firstname (str): User's first name.
+        lastname (str): User's last name.
+        email (str): User's email address.
+        phonenumber (str): User's phone number.
+        date_of_birth (datetime): User's date of birth.
+        role (str): User's role, one of 'family', 'friends', or 'acquaintance'.
+    """
+
     FAMILY = 'family'
     FRIENDS = 'friends'
     ACQUAINTANCE = 'acquaintance'
@@ -23,40 +39,94 @@ class CustomUser(AbstractUser):
     role = models.CharField(
         max_length=20, choices=ROLE_CHOICES, default=FAMILY)
 
-    # Additional fields specific to each role
-    # Additional fields and methods
-
     def __str__(self):
+        """
+        Return a string representation of the CustomUser instance.
+
+        Returns:
+            str: String representation of the user in the format 'firstname-role-username'.
+        """
         return f'{self.firstname}-{self.role}-{self.username}'
 
     def is_family(self):
+        """
+        Check if the user has the family role.
+
+        Returns:
+            bool: True if the user is in the family role, False otherwise.
+        """
         return self.role == self.FAMILY
 
     def is_friends(self):
+        """
+        Check if the user has the friends role.
+
+        Returns:
+            bool: True if the user is in the friends role, False otherwise.
+        """
         return self.role == self.FRIENDS
 
     def is_acquaintance(self):
+        """
+        Check if the user has the acquaintance role.
+
+        Returns:
+            bool: True if the user is in the acquaintance role, False otherwise.
+        """
         return self.role == self.ACQUAINTANCE
 
 
 class InvitationKey(models.Model):
+    """
+    Model representing an invitation key.
+
+    Attributes:
+        key (str): The unique invitation key.
+        is_used (bool): Indicates whether the key has been used.
+    """
     key = models.CharField(max_length=50, unique=True)
     is_used = models.BooleanField(default=False)
 
     def __str__(self):
+        """
+        Return a string representation of the InvitationKey instance.
+
+        Returns:
+            str: The invitation key.
+        """
         return self.key
 
 
 class Profile(models.Model):
+    """
+    Model representing a user profile.
+
+    Attributes:
+        user (CustomUser): One-to-one relationship with the CustomUser model.
+        image (ImageField): Profile image, defaulting to 'default.png'.
+    """
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     image = models.ImageField(default='default.png',
                               upload_to='profile_pictures')
 
     def __str__(self):
+        """
+        Return a string representation of the Profile instance.
+
+        Returns:
+            str: String representation of the profile in the format 'username Profile'.
+        """
         return f'{self.user.username} Profile'
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)   # This would run anyways.
+        """
+        Override the save method to resize the profile image if it exceeds 300x300 pixels.
+
+        Args:
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
+        super().save(*args, **kwargs)
 
         img = Image.open(self.image.path)
         if img.height > 300 or img.width > 300:

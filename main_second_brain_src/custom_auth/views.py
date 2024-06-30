@@ -6,6 +6,19 @@ from .forms import CustomUserCreationForm
 
 
 def register(request):
+    """
+    Handle user registration.
+
+    If the request method is POST, the function processes the submitted form data.
+    If the form is valid, a new user is created, logged in, and redirected to the homepage.
+    Otherwise, the registration form is displayed again with errors.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered registration page or a redirect to the homepage.
+    """
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -19,6 +32,19 @@ def register(request):
 
 
 def login_view(request):
+    """
+    Handle user login.
+
+    If the request method is POST, the function processes the submitted form data.
+    If the form is valid and the user is authenticated, the user is logged in and redirected to the homepage.
+    Otherwise, the login form is displayed again with errors.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered login page or a redirect to the homepage.
+    """
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
 
@@ -37,5 +63,16 @@ def login_view(request):
 
 @login_required
 def logout_view(request):
+    """
+    Handle user logout.
+
+    This view requires the user to be logged in. Upon calling, the user is logged out and redirected to the login page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: A redirect to the login page.
+    """
     logout(request)
     return redirect('login')
