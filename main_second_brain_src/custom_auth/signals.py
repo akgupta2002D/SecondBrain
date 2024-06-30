@@ -7,8 +7,10 @@ from .models import CustomUser, Profile
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+        print(f"Profile created for {instance.username}")
 
 
 @receiver(post_save, sender=CustomUser)
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
+    print(f"Profile saved for {instance.username}")

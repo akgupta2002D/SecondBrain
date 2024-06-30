@@ -27,7 +27,7 @@ class CustomUser(AbstractUser):
     # Additional fields and methods
 
     def __str__(self):
-        return f'{self.firstname}-{self.role}'
+        return f'{self.firstname}-{self.role}-{self.username}'
 
     def is_family(self):
         return self.role == self.FAMILY
@@ -55,8 +55,8 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def save(self):
-        super().save()  # This would run anyways.
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)   # This would run anyways.
 
         img = Image.open(self.image.path)
         if img.height > 300 or img.width > 300:

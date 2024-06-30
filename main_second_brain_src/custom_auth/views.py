@@ -14,7 +14,7 @@ def register(request):
             return redirect('homepage')
     else:
         form = CustomUserCreationForm()
-        rendered_form = form.render("custom_auth/form_custom.html")
+    rendered_form = form.render("custom_auth/form_custom.html")
     return render(request, 'custom_auth/register.html', {'form': rendered_form})
 
 
@@ -31,7 +31,7 @@ def login_view(request):
                 return redirect('homepage')
     else:
         form = AuthenticationForm()
-        rendered_form = form.render("custom_auth/form_custom.html")
+    rendered_form = form.render("custom_auth/form_custom.html")
     return render(request, 'custom_auth/login.html', {'form': rendered_form})
 
 
