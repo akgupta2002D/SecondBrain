@@ -31,4 +31,4 @@
 - [ ]  Our App fails if there are superuser with same emails. So, need to check if this needs fixing.
 - [x]  Profile model isn't working as intended
 - [ ]  Learn about documentation for html, css, js, and others using sphinx
-- [ ]  There is an issue with sphinx documenting doubles.
+- [x]  There is an issue with sphinx documenting doubles. -- Due to sphinxcontrib-django module and due to importing the entire module where only class or data was needed.

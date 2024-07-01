@@ -9,9 +9,6 @@ class CustomUserCreationForm(UserCreationForm):
 
     This form includes an additional field for an invitation key.
 
-    Attributes:
-        invitation_key (CharField): The invitation key required for registration.
-
     Meta:
         model (CustomUser): The model that this form is linked to.
         fields (tuple): The fields to be included in the form.
@@ -31,7 +28,7 @@ class CustomUserCreationForm(UserCreationForm):
         If the key is invalid or already used, a ValidationError is raised.
 
         Returns:
-            str: The cleaned invitation key.
+            key(str): The cleaned invitation key.
 
         Raises:
             forms.ValidationError: If the invitation key is invalid or already used.

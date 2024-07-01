@@ -7,17 +7,6 @@ class CustomUser(AbstractUser):
     """
     Custom user model extending the default AbstractUser model.
 
-    Attributes:
-        FAMILY (str): Role indicating family.
-        FRIENDS (str): Role indicating friends.
-        ACQUAINTANCE (str): Role indicating acquaintances.
-        ROLE_CHOICES (tuple): Tuple of tuples containing the possible roles.
-        firstname (str): User's first name.
-        lastname (str): User's last name.
-        email (str): User's email address.
-        phonenumber (str): User's phone number.
-        date_of_birth (datetime): User's date of birth.
-        role (str): User's role, one of 'family', 'friends', or 'acquaintance'.
     """
 
     FAMILY = 'family'

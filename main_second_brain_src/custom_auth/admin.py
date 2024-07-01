@@ -22,8 +22,11 @@ class CustomUserAdmin(UserAdmin):
         add_fieldsets (tuple): Fields to display when adding a new user.
         prepopulated_fields (dict): Fields to prepopulate in the add form.
     """
+
     add_form = CustomUserCreationForm
+
     model = CustomUser
+
     list_display = ('username', 'email', 'firstname',
                     'lastname', 'role', 'is_staff', 'is_active')
     list_filter = ('role', 'is_staff', 'is_active')

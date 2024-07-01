@@ -30,7 +30,6 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
     'sphinx_rtd_theme',
-    'sphinxcontrib_django',
     'myst_parser',
     'sphinx_markdown_tables',
 ]
@@ -49,3 +48,14 @@ html_static_path = ['_static']
 # Use Google style docstrings rather than NumPy style
 napoleon_google_docstring = True
 napoleon_numpy_docstring = False
+
+# Autodoc config
+autodoc_member_order = 'bysource'
+autodoc_typehints = 'none'
+
+
+autodoc_default_options = {
+    'member-order': 'bysource',
+    'special-members': '__init__',
+    'exclude-members': 'DoesNotExist, MultipleObjectsReturned'
+}

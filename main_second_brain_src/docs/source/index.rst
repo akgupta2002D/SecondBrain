@@ -21,6 +21,7 @@ The Second Brain project is designed to streamline the tracking and management o
 
    custom_auth/custom_auth
    base_layout/base_layout
+   references_sheets/*
 
 Project Goals
 -------------
