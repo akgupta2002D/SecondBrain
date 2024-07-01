@@ -3,9 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-======================
-Second Brain Project
-======================
+.. image:: _static/LogoWhite.png
+   :alt: Logo png
+   :width: 100px
+   :align: center
+   
+================================
+Second Brain Project 
+================================
 
 Welcome to the documentation for the Second Brain project, a comprehensive Django-based application aimed at enhancing personal productivity and well-being. Inspired by the "Second Brain" concept, this project serves as a digital platform to manage various aspects of life.
 
