@@ -13,8 +13,8 @@
 
 
 :root {
-    --lightDarkColor: rgba(45, 43, 43, 0.89);
-    --DarkColorMain: #2D2B2B;
+    --lightDarkColor: #2C2C2C;
+    --DarkColorMain: #1E1E1E;
 }
 
 #base_container{
