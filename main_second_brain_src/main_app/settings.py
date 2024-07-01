@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "custom_auth.apps.CustomAuthConfig",
     "base_layout.apps.BaseLayoutConfig",
     "question_extractor_ocr.apps.QuestionExtractorOcrConfig",
+    "progress_portal.apps.ProgressPortalConfig",
     "docs",
 ]
 
