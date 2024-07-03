@@ -32,7 +32,8 @@
 - [x]  Profile model isn't working as intended
 - [ ]  Learn about documentation for html, css, js, and others using sphinx
 - [x]  There is an issue with sphinx documenting doubles. -- Due to sphinxcontrib-django module and due to importing the entire module where only class or data was needed.
-- [ ]  
+- [ ]  Look into django-extentions for models to class diagrams generation at https://simpleit.rocks/python/django/generate-uml-class-diagrams-from-django-models/
 ## Progress_portal App
 - [ ]  Write planning documenation for this progress_portal app.
+- [ ]  We can also create a USerManager to change how user is created.
 

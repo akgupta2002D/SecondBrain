@@ -163,3 +163,9 @@ cython_debug/
 
 .exe
 exe/
+
+
+\todo
+todo/todo.md
+todo.md
+\todo.md

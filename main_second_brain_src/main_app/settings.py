@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "question_extractor_ocr.apps.QuestionExtractorOcrConfig",
     "progress_portal.apps.ProgressPortalConfig",
     "docs",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [

@@ -5,7 +5,7 @@ User = get_user_model()
 
 
 class LifeGoal(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='life_goals')
@@ -15,35 +15,39 @@ class LifeGoal(models.Model):
 
 
 class Project(models.Model):
-    title = models.CharField(max_length=200)
+    STATE_CHOICES = (
+        ('planning', 'Planning'),
+        ('in_progress', 'In Progress'),
+        ('closed', 'Closed'),
+    )
+    title = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
-    due_date = models.DateField()
     image = models.ImageField(
         upload_to='project_images/', blank=True, null=True)
     life_goal = models.ForeignKey(
         LifeGoal, on_delete=models.CASCADE, related_name='projects')
+    state = models.CharField(
+        max_length=20,
+        choices=STATE_CHOICES,
+        default='planning'
+    )
 
     def __str__(self):
         return self.title
 
 
 class ToDoList(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
-    due_date = models.DateField()
-    priority = models.IntegerField(
-        choices=[(1, 'Low'), (2, 'Medium'), (3, 'High')], default=2)
     project = models.ForeignKey(
         Project, on_delete=models.CASCADE, related_name='todo_lists')
-    files = models.FileField(
-        upload_to='todo_list_files/', blank=True, null=True)
 
     def __str__(self):
         return self.title
 
 
 class ToDoItem(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
     due_date = models.DateField()
     priority = models.IntegerField(
@@ -52,13 +56,14 @@ class ToDoItem(models.Model):
         ToDoList, on_delete=models.CASCADE, related_name='todo_items')
     files = models.FileField(
         upload_to='todo_item_files/', blank=True, null=True)
+    completed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
 
 
 class SubTask(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
     due_date = models.DateField()
     status = models.BooleanField(default=False)
