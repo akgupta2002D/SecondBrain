@@ -1,6 +1,34 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from PIL import Image
+from django.contrib.auth.models import BaseUserManager
+
+
+class CustomUserManager(BaseUserManager):
+    """
+    Custom user manager for CustomUser.
+    """
+
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        """
+        Create and return a regular user with given username and password.
+        """
+        if not username:
+            raise ValueError('The Username must be set')
+        email = self.normalize_email(email)
+        user = self.model(username=username, email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, username, email=None, password=None, **extra_fields):
+        """
+        Create and return a superuser with given username and password.
+        """
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        return self.create_user(username, email, password, **extra_fields)
 
 
 class CustomUser(AbstractUser):
@@ -27,6 +55,8 @@ class CustomUser(AbstractUser):
     date_of_birth = models.DateTimeField(null=True, blank=True)
     role = models.CharField(
         max_length=20, choices=ROLE_CHOICES, default=FAMILY)
+
+    objects = CustomUserManager()
 
     def __str__(self):
         """
