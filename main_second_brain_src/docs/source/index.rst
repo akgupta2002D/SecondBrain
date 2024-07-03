@@ -12,7 +12,7 @@
 Second Brain Project 
 ================================
 
-Welcome to the documentation for the Second Brain project, a comprehensive Django-based application aimed at enhancing personal productivity and well-being. Inspired by the "Second Brain" concept, this project serves as a digital platform to manage various aspects of life.
+Welcome to the documentation for the Second Brain project, a comprehensive Django-based application aimed at enhancing personal productivity and well-being. Inspired by the "Second Brain" concept, this project serves as a digital platform to manage various aspects of life. It also serves as a space for me to display other projects and utilities I build overtime.
 
 Overview
 --------
@@ -20,9 +20,10 @@ Overview
 The Second Brain project is designed to streamline the tracking and management of personal projects, health metrics, and more, using modern web technologies and robust design patterns.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :glob:
    :caption: Apps Documentation:
+   :hidden:
 
    custom_auth/custom_auth
    base_layout/base_layout
@@ -36,17 +37,15 @@ Project Goals
 
 Technology Stack
 ----------------
-
-- **Web Framework**: Django with Django Jinja2 for templating.
-- **Frontend**: HTML, CSS, JavaScript, and React for dynamic interfaces.
-- **Backend Tools**: Django Signals for real-time updates, asynchronous processing.
+- **Backend Tools**: Django, Django Rest FrameWork, Django Signals for real-time updates, asynchronous processing.
+- **Frontend**: HTML, CSS, JavaScript, and ( React for dynamic interfaces. )
+- **Documentation**: Sphinx along with custom markdown and HTML files.
+- **Planning**: draw.io, Figma, UML Diagram along with sketch on paper.
+- **Testing**: Unit Testing provided by django
 - **Deployment**: AWS EC2, RDS, S3, nginx, gunicorn, with a focus on mobile-friendly PWA features.
 - **APIs**: Extensive integration with external APIs for enhanced functionality.
 
 This documentation is structured to provide insights into both the overarching architecture and individual components of the project.
-
-
-   
 
 Indices and tables
 ==================
