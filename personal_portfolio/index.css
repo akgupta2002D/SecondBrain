@@ -1,0 +1,36 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.main_container{
+    display: flex;
+    height: 100vh;
+}
+
+.background_image_container{
+    max-width: 60vw;
+    overflow-y: hidden;
+}
+
+.background_image_container img{
+    width: 100%;
+    
+}
+
+.expandable_navbar{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.scrolling_projects_view{
+    display: flex;
+    width: 40rem;
+    background-color: white;
+    
+    overflow-y: hidden;
+    position: relative;
+}
+

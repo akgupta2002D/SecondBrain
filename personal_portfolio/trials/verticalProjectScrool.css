@@ -1,0 +1,64 @@
+.scrolling_projects_view{
+    display: flex;
+    width: 40rem;
+    background-color: white;
+
+    overflow-y: hidden;
+    position: relative;
+}
+
+
+/* Gradient for fading edges */
+.slider::before,
+.slider::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 60px; /* adjust the height to fade edges appropriately */
+    z-index: 2;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.slider::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.slider::before {
+    top: 0;
+}
+
+/* Assuming each card height is 20rem and you have 10 cards, you need to set the animation to move twice the height of the visible container (if half is visible at any time). */
+@keyframes scroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(calc(-21rem * 5)); } /* This assumes 10 cards, each 20rem high, ensuring the start and end of the scroll are seamless. */
+}
+
+@keyframes scroll_reverse {
+    0% { transform: translateY(calc(-21rem * 5)); }
+    100% { transform: translateY(0); }
+}
+
+
+/* Slider Styling */
+.slider {
+    background: white;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+    width: 250px;
+    height: 100vh; /* Adjusted for viewport */
+    overflow: hidden;
+    position: relative;
+    padding: 1rem;
+}
+
+.project_cards_track {
+    animation: scroll 15s linear infinite; /* Adjust time based on new scroll length */
+    display: flex;
+    flex-direction: column;
+}
+
+.project_cards_track.reverse {
+    animation: scroll_reverse 15s linear infinite;
+}
+
+
