@@ -45,6 +45,7 @@ Documentation
    :maxdepth: 2
 
    modules
+   
 Commit History
 ~~~~~~~~~~~~~~
 - *Date*: Jan 21st - Initial setup of the base layout.

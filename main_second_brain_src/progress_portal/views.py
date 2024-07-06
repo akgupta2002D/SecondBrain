@@ -1,39 +1,48 @@
+"""
+ViewSets and Async Views for Life Goals and Projects
+
+This module provides the views and viewsets for managing life goals and projects. The views include both synchronous and asynchronous processing to handle requests efficiently.
+
+Functions:
+    viewProgressPortal:
+    get_all_life_goals:
+    life_goal_detail:
+    project_detail:
+"""
+
 from asgiref.sync import sync_to_async
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from .models import LifeGoal, Project, ToDoItem
 from .serializers import LifeGoalSerializer
 from rest_framework.permissions import IsAuthenticated
-from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .utils import get_all_life_goals_sync, get_projects_for_life_goal_sync
 
 
-class LifeGoalViewSet(viewsets.ModelViewSet):
-    queryset = LifeGoal.objects.all()
-    serializer_class = LifeGoalSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
-
-
 def viewProgressPortal(request):
+    """
+    Renders the progress portal dashboard.
+
+    Args:
+        request (HttpRequest): The request object.
+
+    Returns:
+        HttpResponse: The rendered dashboard page.
+    """
     return render(request, 'progress_portal/dashboard.html')
 
 
-# def progress_portal_view(request):
-#     if not request.user.is_authenticated:
-#         # Make sure to replace 'login_url' with the actual URL name for login
-#         return redirect('login')
-
-#     life_goals = LifeGoal.objects.filter(user=request.user).prefetch_related(
-#         'projects__todo_items__subtasks'
-#     )
-#     return render(request, 'progress_portal/dashboard.html', {'life_goals': life_goals})
-
-
 async def get_all_life_goals(request):
+    """
+    Asynchronously retrieves all life goals with their associated projects.
+
+    Args:
+        request (HttpRequest): The request object.
+
+    Returns:
+        JsonResponse: A JSON response containing all life goals and their projects.
+    """
     life_goals = await sync_to_async(list)(LifeGoal.objects.all())
     data = []
     for life_goal in life_goals:
@@ -50,8 +59,17 @@ async def get_all_life_goals(request):
     return JsonResponse(data, safe=False)
 
 
-# Life Goal Detail response
 async def life_goal_detail(request, pk):
+    """
+    Asynchronously retrieves details of a specific life goal.
+
+    Args:
+        request (HttpRequest): The request object.
+        pk (int): The primary key of the life goal.
+
+    Returns:
+        JsonResponse: A JSON response containing the life goal details and associated projects.
+    """
     try:
         life_goal = await sync_to_async(LifeGoal.objects.get)(pk=pk)
     except LifeGoal.DoesNotExist:
@@ -71,6 +89,16 @@ async def life_goal_detail(request, pk):
 
 
 async def project_detail(request, pk):
+    """
+    Asynchronously retrieves details of a specific project.
+
+    Args:
+        request (HttpRequest): The request object.
+        pk (int): The primary key of the project.
+
+    Returns:
+        JsonResponse: A JSON response containing the project details and associated to-do items.
+    """
     try:
         project = await sync_to_async(Project.objects.get)(pk=pk)
     except Project.DoesNotExist:

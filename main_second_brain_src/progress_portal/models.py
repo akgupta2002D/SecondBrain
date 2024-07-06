@@ -1,3 +1,15 @@
+"""
+Models for Life Goals, Projects, ToDoItems, and SubTasks
+
+This module defines the models for managing life goals, projects, to-do items, and subtasks. Each model is connected through foreign key relationships to represent a hierarchical structure.
+
+Classes:
+    LifeGoal
+    Project
+    ToDoItem
+    SubTask
+"""
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.conf import settings
@@ -6,6 +18,15 @@ User = get_user_model()
 
 
 class LifeGoal(models.Model):
+    """
+    Represents a life goal set by a user.
+
+    Attributes:
+        title (str): The title of the life goal.
+        description (str): A detailed description of the life goal.
+        icon (FileField): An optional icon representing the life goal.
+        user (ForeignKey): The user who set the life goal.
+    """
     title = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
     icon = models.FileField(
@@ -18,6 +39,16 @@ class LifeGoal(models.Model):
 
 
 class Project(models.Model):
+    """
+    Represents a project associated with a life goal.
+
+    Attributes:
+        title (str): The title of the project.
+        description (str): A detailed description of the project.
+        image (ImageField): An optional image representing the project.
+        life_goal (ForeignKey): The life goal associated with the project.
+        state (str): The current state of the project (planning, in progress, closed).
+    """
     STATE_CHOICES = (
         ('planning', 'Planning'),
         ('in_progress', 'In Progress'),
@@ -40,6 +71,18 @@ class Project(models.Model):
 
 
 class ToDoItem(models.Model):
+    """
+    Represents a to-do item within a project.
+
+    Attributes:
+        title (str): The title of the to-do item.
+        description (str): A detailed description of the to-do item.
+        due_date (date): The due date for the to-do item.
+        priority (int): The priority level of the to-do item (1: Low, 2: Medium, 3: High).
+        todo_list (ForeignKey): The project to which the to-do item belongs.
+        files (FileField): Optional files associated with the to-do item.
+        completed (bool): Indicates whether the to-do item is completed.
+    """
     title = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
     due_date = models.DateField()
@@ -56,6 +99,16 @@ class ToDoItem(models.Model):
 
 
 class SubTask(models.Model):
+    """
+    Represents a subtask within a to-do item.
+
+    Attributes:
+        title (str): The title of the subtask.
+        description (str): A detailed description of the subtask.
+        due_date (date): The due date for the subtask.
+        status (bool): Indicates whether the subtask is completed.
+        todo_item (ForeignKey): The to-do item to which the subtask belongs.
+    """
     title = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
     due_date = models.DateField()
