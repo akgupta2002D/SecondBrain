@@ -1,7 +1,7 @@
 {% extends 'base_layout/base.html' %}
 {% load static %}
 {%block css%}
-<link rel="stylesheet" href="{% static 'base_layout/css/home_welcome_screen.css' %}" />
+
 {%endblock%}
 {%block title%} Second Brain {%endblock%}
 
@@ -18,9 +18,11 @@
     <div class="base_navbar" id="base_navbar">
         <h2>SECOND BRAIN</h2>
         <div class="navbar_app_links_container">
-            <button class="navbar_button">
-                Public profile
-            </button>
+            <a href="{% url 'life_goals_view' %}">
+                <button class="navbar_button">
+                    Progress Portal
+                </button>
+            </a>
             <button class="navbar_button">
                 Account
             </button>
@@ -37,12 +39,15 @@
         </div>
     </div>
     <div class="app_display_area">
+        {%block logo%}
         <div class="base_logo">
             <img src="{% static 'base_layout/images/LogoMain.png' %}" alt="">
 
         </div>
+        {%endblock %}
 
         {%block app%}
+
         <div class="app_content_wrapper">
 
             <div class="card">
@@ -68,6 +73,7 @@
             </div>
         </div>
         {%endblock %}
+
     </div>
 </div>
 

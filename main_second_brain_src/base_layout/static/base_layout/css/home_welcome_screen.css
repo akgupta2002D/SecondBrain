@@ -8,4 +8,15 @@
     flex: 1;
 }
 
+.base_logo{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width:calc(100vw - 70px);
+}
+.base_logo img{
+    padding-top: 17px;
+    width: 80px;
+}
+
 

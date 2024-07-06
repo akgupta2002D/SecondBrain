@@ -56,3 +56,8 @@
     filter: blur(1px);
     transform: scale(0.95,0.95);
   }
+
+  .navbar_app_links_container a{
+    text-decoration: none;
+  }
+ 

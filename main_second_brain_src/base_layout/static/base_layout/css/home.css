@@ -76,19 +76,12 @@
 
 .app_display_area{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    min-height: 100vh;
     flex: 1;
     margin-left: 70px;
     
 }
-.base_logo{
-    position: fixed;
-}
-.base_logo img{
-    padding-top: 17px;
-    width: 80px;
-}
+
 
 /* Navbar Toggle */
 .base_navbar.visible {
