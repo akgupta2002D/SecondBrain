@@ -13,9 +13,18 @@
 }
 
 .task_view{
-    flex: 1 2 82%;
+    flex: 1 2 58%;
     background-color: var(--lightDarkColor);
+    padding: 2rem;
 }
+
+.projects_quicknav{
+    flex: 1 2 24%;
+    background-color: var(--lightDarkColor);
+    border-left: 1px solid rgba(255, 255, 255, 0.518);
+}
+
+
 
 .svg_label_collection{
     display: flex;
@@ -37,3 +46,4 @@
     text-align: left;
     margin-left: 2rem;
 }
+

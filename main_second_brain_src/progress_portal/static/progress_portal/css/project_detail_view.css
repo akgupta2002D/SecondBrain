@@ -1,0 +1,25 @@
+.project_detail {
+    margin-top: 6rem;
+    color: white;
+}
+
+.project_detail .project_label{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ff1d69;
+    padding-top: 1rem;
+}
+
+.project_detail ul { 
+    padding-left: 1.5rem;
+}
+
+.project_detail ul li {
+    list-style: none;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+

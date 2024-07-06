@@ -6,6 +6,14 @@
 {%block css%}
 <link rel="stylesheet" href="{% static 'progress_portal/css/dashboard.css' %}" />
 <link rel="stylesheet" href="{% static 'progress_portal/css/life_goals_display.css' %}" />
+<link rel="stylesheet" href="{% static 'progress_portal/css/life_goals_detail_view.css' %}" />
+<link rel="stylesheet" href="{% static 'progress_portal/css/project_detail_view.css' %}" />
+<link rel="stylesheet" href="{% static 'progress_portal/css/checkbox.css' %}" />
+<link rel="stylesheet" href="{% static 'progress_portal/css/drop_down.css' %}" />
+
+
+
+
 
 
 {%endblock%}
@@ -43,8 +51,9 @@
 
     </div>
     <div class="task_view">
-        <div class="projects_quicknav"></div>
+
     </div>
+    <div class="projects_quicknav"></div>
 
 </div>
 
@@ -58,4 +67,7 @@
 {%block script%}
 
 <script src="{% static 'progress_portal/js/async_lifegoals_query.js' %}"> </script>
+<script src="{% static 'progress_portal/js/async_detail_view.js' %}"> </script>
+
+
 {%endblock%}
