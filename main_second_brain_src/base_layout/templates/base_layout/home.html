@@ -6,75 +6,83 @@
 {%block title%} Second Brain {%endblock%}
 
 {%block body%}
-<div id="base_container">
-    <div class="base_sidebar">
-        <img id="navbar_toogle" src="{% static 'base_layout/images/arrow_white.png' %}" alt="">
-        {% if user.is_authenticated %}
-        <a id="login_logout_link_sidebar" href="{% url 'logout' %}">Logout</a>
-        {% else %}
-        <a id="login_logout_link_sidebar" href="{% url 'login' %}">Login</a>
-        {% endif %}
-    </div>
-    <div class="base_navbar" id="base_navbar">
-        <h2>SECOND BRAIN</h2>
-        <div class="navbar_app_links_container">
-            <a href="{% url 'life_goals_view' %}">
-                <button class="navbar_button">
-                    Progress Portal
-                </button>
-            </a>
+<!-- Link to the SVG sprite file directly -->
+
+<div class="base_sidebar">
+    <img id="navbar_toogle" src="{% static 'base_layout/images/arrow_white.png' %}" alt="">
+    {% if user.is_authenticated %}
+    <a id="login_logout_link_sidebar" href="{% url 'logout' %}">Logout</a>
+    {% else %}
+    <a id="login_logout_link_sidebar" href="{% url 'login' %}">Login</a>
+    {% endif %}
+</div>
+<div class="base_navbar" id="base_navbar">
+    <h2 class="app_themed_text">SECOND BRAIN</h2>
+    <div class="navbar_app_links_container">
+        <a href="{% url 'life_goals_view' %}">
+            <button class="navbar_button">
+                Progress Portal
+            </button>
+        </a>
+        <a href="{% url 'life_goals_view' %}">
             <button class="navbar_button">
                 Account
             </button>
+        </a>
+        <a href="{% url 'life_goals_view' %}">
             <button class="navbar_button">
-                Appearance
+                HomePage
             </button>
+        </a>
+        <a href="{% url 'life_goals_view' %}">
             <button class="navbar_button">
-                Accessibility
+                Other App
             </button>
+        </a>
+        <a href="{% url 'life_goals_view' %}">
             <button class="navbar_button">
-
-                Notifications
+                Admin
             </button>
-        </div>
+        </a>
     </div>
-    <div class="app_display_area">
-        {%block logo%}
-        <div class="base_logo">
-            <img src="{% static 'base_layout/images/LogoMain.png' %}" alt="">
-
-        </div>
-        {%endblock %}
-
-        {%block app%}
-
-        <div class="app_content_wrapper">
-
-            <div class="card">
-                <div class="card_header">My Skills</div>
-                <div class="card_body">
-                    <p>Hey</p>
-                    <p>How are you?</p>
-                </div>
-            </div>
-
-            <div class="profile_card">
-                <div class="profile_image_container">
-                    {% if user.profile and user.profile.image %}
-                    <img class="profile_image" src="{{ user.profile.image.url }}" alt="Profile image">
-                    {% else %}
-                    <p>Profile image not available.</p>
-                    {% endif %}
-                </div>
-                <div class="profile_text_container">
-                    <p class="profile_name"> {{user.firstname}} {{user.lastname}}</p>
-                    <p class="profile_text">{{user.role}}</p>
-                </div>
-            </div>
-        </div>
-        {%endblock %}
+</div>
+<div class="app_display_area">
+    {%block logo%}
+    <div class="base_logo">
+        <img src="{% static 'base_layout/images/LogoMain.png' %}" alt="">
 
     </div>
+    {%endblock %}
+
+    {%block app%}
+
+    <div class="app_content_wrapper">
+
+        <div class="card">
+            <div class="card_header">My Skills</div>
+            <div class="card_body">
+                <p>Hey</p>
+                <p>How are you?</p>
+            </div>
+        </div>
+
+        <div class="profile_card">
+            <div class="profile_image_container">
+                {% if user.profile and user.profile.image %}
+                <img class="profile_image" src="{{ user.profile.image.url }}" alt="Profile image">
+                {% else %}
+                <p>Profile image not available.</p>
+                {% endif %}
+            </div>
+            <div class="profile_text_container">
+                <p class="profile_name"> {{user.firstname}} {{user.lastname}}</p>
+                <p class="profile_text">{{user.role}}</p>
+            </div>
+        </div>
+    </div>
+    {%endblock %}
+
+</div>
 </div>
 
 {%endblock %}

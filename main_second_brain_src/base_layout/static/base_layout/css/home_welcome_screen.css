@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     position: fixed;
-    width:calc(100vw - 70px);
+    width:-webkit-fill-available;
 }
 .base_logo img{
     padding-top: 17px;

@@ -1,0 +1,58 @@
+{% extends 'base_layout/home.html' %}
+{% load static %}
+{%block title%} Progress Portal {%endblock%}
+
+
+{%block css%}
+<link rel="stylesheet" href="{% static 'progress_portal/css/dashboard.css' %}" />
+
+{%endblock%}
+
+{%block logo%}
+<div class="base_logo">
+    <img src="{% static 'progress_portal/images/LogoWhite.png' %}" alt="">
+
+</div>
+
+{%endblock %}
+
+
+{%block app%}
+
+
+<div class="progress_portal_main">
+    <div class="progress_navbar">
+        <h2 class="app_themed_text">Progress Portal</h2>
+        <div class="progress_portal_navbar_items">
+            <div class="svg_label_collection">
+                <img src="{% static 'base_layout/svg/inbox.svg' %}" alt="">
+                <p>Inbox</p>
+            </div>
+            <div class="svg_label_collection">
+                <img src="{% static 'base_layout/svg/today.svg' %}" alt="">
+                <p>Today</p>
+            </div>
+            <div class="svg_label_collection">
+                <img src="{% static 'base_layout/svg/upcoming.svg' %}" alt="">
+                <p>Upcoming</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="task_view">
+        <div class="projects_quicknav"></div>
+    </div>
+
+</div>
+
+
+
+{%endblock %}
+
+
+
+
+{%block script%}
+
+
+{%endblock%}

@@ -1,0 +1,39 @@
+.progress_portal_main{
+    display: flex;
+    flex: 1;
+    height: 100vh;
+}
+
+.progress_navbar{
+    color: white;
+    flex: 1 1 18%;
+    background-color: var(--DarkColorMain);
+    display: flex;
+    flex-direction: column;
+}
+
+.task_view{
+    flex: 1 2 82%;
+    background-color: var(--lightDarkColor);
+}
+
+.svg_label_collection{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 16px;
+}
+
+.progress_navbar .app_themed_text{
+    font-size: 28px;
+    padding-top: 28px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.progress_portal_navbar_items{
+    text-align: left;
+    margin-left: 2rem;
+}
