@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-from .views import LifeGoalViewSet, progress_portal_view
+from .views import LifeGoalViewSet,  get_all_life_goals, viewProgressPortal
 from django.urls import path, include
 
 router = DefaultRouter()
@@ -10,5 +10,6 @@ urlpatterns = [
 
     # DRF API URLs
     path('lifegoal/', include(router.urls)),
-    path('view/', progress_portal_view, name='life_goals_view')
+    path('view/', viewProgressPortal, name='portal_dashboard'),
+    path('api/life_goals/', get_all_life_goals, name='get_all_life_goals'),
 ]

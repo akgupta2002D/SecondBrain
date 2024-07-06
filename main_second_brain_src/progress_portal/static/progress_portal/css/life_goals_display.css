@@ -1,0 +1,35 @@
+#life_goals_display {
+    margin-top: 2rem;
+}
+
+#life_goals_display ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+    margin-top: 1rem;
+}
+
+#life_goals_display li {
+    margin: 5px 0;
+}
+
+#life_goals_display a {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Set text color to white */
+    display: block; /* Make links block elements for easier styling */
+}
+
+#life_goals_display a:hover {
+    text-decoration: underline; /* Optional: Add underline on hover for better UX */
+}
+
+#life_goals_display .life_goal_title {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+#life_goals_display .project_title {
+    margin-left: 20px; /* Indent project titles for better hierarchy */
+    font-size: 0.8rem;
+}
+

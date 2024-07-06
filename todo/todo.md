@@ -11,14 +11,14 @@
 - [x] Add CSS for login and register
 - [x] Make login and register mobile friendly
 - [x] Add images of frontend to the documentation of the authentication system
-- [ ] There is a problem in the UI ![Error Image](image.png)
+- [x] There is a problem in the UI [Error Image](image.png)
 ## Welcome Page - home
 - [x] Edit the homepage to have more data and information, create a good layout - version 1
 - [x] Plan the next app 
 - [ ] There is an issue with the logo being "position: fixed" causing divs in app section of screen require a margin of 70px, solve this.
 - [x] There is a bug, when I tried loading the OCR html, it is showing login elements in it.
-- [ ]  Edit the homepage to have more data and information, create a good layout - version 2
-- [ ]  Base Layout cannot have the logo, it is messing with the other layout.
+- [ ] Edit the homepage to have more data and information, create a good layout - version 2
+- [x]  Base Layout cannot have the logo, it is messing with the other layout.
 ## General Problems and Todo
 - [ ]  CSS is getting out of hand
 - [x]  Sphinx - for python documentation
@@ -34,5 +34,5 @@
 - [ ]  Look into django-extentions for models to class diagrams generation at https://simpleit.rocks/python/django/generate-uml-class-diagrams-from-django-models/
 ## Progress_portal App
 - [ ]  Write planning documenation for this progress_portal app.
-- [ ]  We can also create a USerManager to change how user is created.
+- [x]  We can also create a USerManager to change how user is created.
 

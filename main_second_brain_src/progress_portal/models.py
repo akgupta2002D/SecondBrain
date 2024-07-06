@@ -8,6 +8,8 @@ User = get_user_model()
 class LifeGoal(models.Model):
     title = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
+    icon = models.ImageField(
+        upload_to='icons/', default='icons/default_icon.png', blank=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='life_goals')
 
@@ -37,16 +39,6 @@ class Project(models.Model):
         return self.title
 
 
-class ToDoList(models.Model):
-    title = models.CharField(max_length=200, db_index=True)
-    description = models.TextField(blank=True)
-    project = models.ForeignKey(
-        Project, on_delete=models.CASCADE, related_name='todo_lists')
-
-    def __str__(self):
-        return self.title
-
-
 class ToDoItem(models.Model):
     title = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
@@ -54,7 +46,7 @@ class ToDoItem(models.Model):
     priority = models.IntegerField(
         choices=[(1, 'Low'), (2, 'Medium'), (3, 'High')], default=2)
     todo_list = models.ForeignKey(
-        ToDoList, on_delete=models.CASCADE, related_name='todo_items')
+        Project, on_delete=models.CASCADE, related_name='todo_items')
     files = models.FileField(
         upload_to='todo_item_files/', blank=True, null=True)
     completed = models.BooleanField(default=False)

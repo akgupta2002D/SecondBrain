@@ -5,6 +5,8 @@
 
 {%block css%}
 <link rel="stylesheet" href="{% static 'progress_portal/css/dashboard.css' %}" />
+<link rel="stylesheet" href="{% static 'progress_portal/css/life_goals_display.css' %}" />
+
 
 {%endblock%}
 
@@ -36,6 +38,7 @@
                 <img src="{% static 'base_layout/svg/upcoming.svg' %}" alt="">
                 <p>Upcoming</p>
             </div>
+            <div id="life_goals_display"></div>
         </div>
 
     </div>
@@ -54,5 +57,5 @@
 
 {%block script%}
 
-
+<script src="{% static 'progress_portal/js/async_lifegoals_query.js' %}"> </script>
 {%endblock%}
