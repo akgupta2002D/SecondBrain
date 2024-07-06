@@ -8,8 +8,8 @@ User = get_user_model()
 class LifeGoal(models.Model):
     title = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
-    icon = models.ImageField(
-        upload_to='icons/', default='icons/default_icon.png', blank=True)
+    icon = models.FileField(
+        upload_to='icons/', default='icons/default_icon.svg', blank=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='life_goals')
 

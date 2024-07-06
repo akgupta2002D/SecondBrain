@@ -25,11 +25,16 @@
 
 #life_goals_display .life_goal_title {
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 #life_goals_display .project_title {
-    margin-left: 20px; /* Indent project titles for better hierarchy */
-    font-size: 0.8rem;
+    margin-left: 1.4rem; /* Indent project titles for better hierarchy */
+    font-size: 0.7rem;
 }
 
+.life_goal_container{
+    display: flex;
+    gap: 0.5rem;
+
+}

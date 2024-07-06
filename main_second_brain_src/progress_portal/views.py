@@ -43,6 +43,7 @@ async def get_all_life_goals(request):
                           "id": project.id} for project in projects]
         data.append({
             "life_goal": life_goal.title,
+            "icon": life_goal.icon.url if life_goal.icon else None,
             "projects": projects_data
         })
     return JsonResponse(data, safe=False)
