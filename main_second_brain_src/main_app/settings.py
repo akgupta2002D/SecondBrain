@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "progress_portal.apps.ProgressPortalConfig",
     "docs",
     "rest_framework",
+    "exam_quest.apps.ExamQuestConfig",
 ]
 
 MIDDLEWARE = [
