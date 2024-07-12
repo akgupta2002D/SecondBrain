@@ -67,9 +67,6 @@ Development Notes
 Documentation
 -------------
 
-
-
-
 .. toctree::
    :maxdepth: 2
 
