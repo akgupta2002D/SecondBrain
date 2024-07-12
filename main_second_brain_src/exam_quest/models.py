@@ -1,9 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
+
+from django.conf import settings
 
 
 class Class(models.Model):
+    """
+    Represents a class level.
+
+    """
     name = models.CharField(max_length=50)
     description = models.TextField(blank=True)
 
@@ -12,6 +17,10 @@ class Class(models.Model):
 
 
 class Subject(models.Model):
+    """
+    Represents a subject taught in a specific class level.
+
+    """
     name = models.CharField(max_length=100)
     class_level = models.ForeignKey(Class, on_delete=models.CASCADE)
 
@@ -20,6 +29,10 @@ class Subject(models.Model):
 
 
 class Topic(models.Model):
+    """
+    Represents a topic under a specific subject.
+
+    """
     name = models.CharField(max_length=200)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
@@ -28,6 +41,10 @@ class Topic(models.Model):
 
 
 class Question(models.Model):
+    """
+    Represents a question under a specific topic.
+
+    """
     DIFFICULTY_CHOICES = [
         ('E', 'Easy'),
         ('M', 'Medium'),
@@ -62,6 +79,10 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
+    """
+    Represents an answer to a specific question.
+
+    """
     question = models.ForeignKey(
         Question, on_delete=models.CASCADE, related_name='answers')
     text = models.TextField()
@@ -73,13 +94,17 @@ class Answer(models.Model):
 
 
 class Exam(models.Model):
+    """
+    Represents an exam.
+
+    """
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     class_level = models.ForeignKey(Class, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     questions = models.ManyToManyField(Question, through='ExamQuestion')
     created_by = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, related_name='created_exams')
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name='created_exams')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     duration = models.PositiveIntegerField(
@@ -98,6 +123,10 @@ class Exam(models.Model):
 
 
 class ExamQuestion(models.Model):
+    """
+    Represents the association between an exam and a question, with an order.
+
+    """
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     order = models.PositiveIntegerField()
@@ -110,8 +139,13 @@ class ExamQuestion(models.Model):
 
 
 class ExamAttempt(models.Model):
+    """
+    Represents an attempt by a user to complete an exam.
+
+    """
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     start_time = models.DateTimeField(auto_now_add=True)
     end_time = models.DateTimeField(null=True, blank=True)
     score = models.FloatField(null=True, blank=True)
@@ -122,6 +156,10 @@ class ExamAttempt(models.Model):
 
 
 class UserAnswer(models.Model):
+    """
+    Represents an answer provided by a user for a specific question in an exam attempt.
+
+    """
     attempt = models.ForeignKey(ExamAttempt, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     selected_answer = models.ForeignKey(
