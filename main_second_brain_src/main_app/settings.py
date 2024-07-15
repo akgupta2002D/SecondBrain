@@ -15,6 +15,10 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# settings.py
+PARENT_DIR = os.path.dirname(BASE_DIR)
+# Correct path to Tesseract executable
+TESSERACT_CMD = os.path.join(PARENT_DIR, 'tesseract_exe', 'tesseract.exe')
 
 
 # Quick-start development settings - unsuitable for production

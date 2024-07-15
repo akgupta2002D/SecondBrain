@@ -1,0 +1,57 @@
+{% extends 'base_layout/home.html' %}
+{% load static %}
+{%block title%} OCR {%endblock%}
+
+
+{%block css%}
+<link rel="stylesheet" href="{% static 'question_extractor_ocr/css/upload.css' %}">
+
+{%endblock%}
+
+
+{%block app%}
+
+<!-- extractor/templates/extractor/upload_and_view.html -->
+
+<div class="ocr-container">
+    <div class="ocr-content">
+        <div class="ocr-left-column">
+            <div class="upload-section">
+                <h2>Upload File</h2>
+                <form id="upload-form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
+            </div>
+            <div class="preview-section">
+                <h2>File Preview</h2>
+                <button id="extract-btn" class="btn btn-success" style="display:none;">Extract Text</button>
+                <div id="file-display"></div>
+
+            </div>
+        </div>
+        <div class="ocr-right-column">
+            <div class="result-section">
+                <h2>Extracted Text</h2>
+                <div id="extracted-text"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock %}
+
+
+
+
+{%block script%}
+<script>
+    // Define global variables for URLs
+    // window.UPLOAD_URL = "{% url 'upload_and_view' %}";
+    // window.EXTRACT_BASE_URL = "{% url 'extract_text' %}".slice(0, -2);
+</script>
+<script src="{% static 'question_extractor_ocr/js/fetchAndExtractDocument.js' %}">
+
+</script>
+{%endblock%}
