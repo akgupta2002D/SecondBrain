@@ -30,6 +30,9 @@ The Second Brain project is designed to streamline the tracking and management o
    references_sheets/*
    progress_portal/progress_portal
    exam_quest/exam_quest
+   question_extractor_ocr/question_extractor_ocr
+   knowledge_center/knowledge_center
+
 
 Project Goals
 -------------
