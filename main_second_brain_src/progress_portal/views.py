@@ -107,6 +107,7 @@ async def project_detail(request, pk):
     todo_items = await sync_to_async(list)(project.todo_items.all())
     todo_items_data = [
         {
+            "id": item.id,
             "title": item.title,
             "description": item.description,
             "due_date": item.due_date,

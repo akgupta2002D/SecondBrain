@@ -32,6 +32,7 @@ async function handleProjectClick(event) {
     }
 }
 
+
 function displayLifeGoalData(data) {
     const taskViewDiv = document.querySelector('.task_view');
     if (!taskViewDiv) {
@@ -80,7 +81,7 @@ function displayProjectData(data) {
             ${data.todo_items.map(item => `
                 <li>
                     <label class="custom-checkbox">
-                        <input name="dummy" type="checkbox" ${item.completed ? 'checked' : ''}>
+                        <input name="dummy" type="checkbox" data-id="${item.id}" ${item.completed ? 'checked' : ''}>
                         <span class="checkmark"></span>
                     </label>
                     <h3>${item.title}</h3>
@@ -104,4 +105,9 @@ function displayProjectData(data) {
     `;
     console.log("Appending project data to task_view div"); // Debug log
     taskViewDiv.appendChild(newDiv);
+
+    // Add event listeners to the checkboxes
+    newDiv.querySelectorAll('.custom-checkbox input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', handleCheckboxChange);
+    });
 }
