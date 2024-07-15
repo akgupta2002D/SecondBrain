@@ -1,0 +1,183 @@
+{% extends 'base_layout/home.html' %}
+{% load static %}
+{%block title%} Exam Result {%endblock%}
+
+
+{%block css%}
+<link rel="stylesheet" href="{% static 'exam_quest/css/dashboard.css' %}" />
+
+{%endblock%}
+
+
+
+{%block app%}
+<div class="exam_quest_main">
+    <div class="exam_quest_dashboard_navbar">
+        <h2 class="app_themed_text">Exam Quest</h2>
+        <div class="exam_quest_navbar_items">
+            <div id="quick_navigation">
+                <h3>Quick Navigation</h3>
+                <div class="dashboard-section">
+                    <h4>Classes</h4>
+                    <ul>
+                        {% for class in classes %}
+                        <li>{{ class.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="dashboard-section">
+                    <h4>Subjects</h4>
+                    <ul>
+                        {% for subject in subjects %}
+                        <li>{{ subject.name }} ({{ subject.class_level }})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="dashboard-section">
+                    <h4>Topics</h4>
+                    <ul>
+                        {% for topic in topics %}
+                        <li>{{ topic.name }} ({{ topic.subject }})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="dashboard-section">
+                    <h4>Available Exams</h4>
+                    <ul>
+                        {% for exam in exams %}
+                        <li>{{ exam.title }} ({{ exam.subject }})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="exam_quest_content_area">
+        <div class="user_information">
+            <!-- User information can be added here -->
+            <h1>Exam Results: {{ attempt.exam.title }}</h1>
+            <p>Score: <span id="score">{{ attempt.score }}</span> / {{ attempt.exam.questions.count }}</p>
+            <p>Percentage: <span id="percentage">{{ percentage_score|floatformat:2 }}%</span></p>
+            <p>Result: <span id="result" {% if passed %}class="passed" {% else %}class="failed" {% endif %}>
+                    {% if passed %}Passed{% else %}Insufficient{% endif %}
+                </span></p>
+
+            <div id="exam-progress">
+                Question <span id="current-question">1</span> of {{ user_answers|length }}
+            </div>
+
+            <div id="question-review">
+                {% for user_answer in user_answers %}
+                <div class="question-result" id="question-{{ forloop.counter }}" {% if not forloop.first %}
+                    style="display: none;" {% endif %}>
+                    <h3>Question {{ forloop.counter }}: {{ user_answer.question.text }}</h3>
+                    <p>Your Answer:
+                        <span class="user-answer {% if user_answer.is_correct %}correct{% else %}incorrect{% endif %}">
+                            {% if user_answer.question.question_type == 'MCQ' %}
+                            {{ user_answer.selected_choice }}
+                            {% elif user_answer.question.question_type == 'TF' %}
+                            {{ user_answer.true_false_answer|yesno:"True,False" }}
+                            {% elif user_answer.question.question_type == 'FIB' %}
+                            {{ user_answer.fill_blanks_answer }}
+                            {% else %}
+                            {{ user_answer.text_answer }}
+                            {% endif %}
+                        </span>
+                    </p>
+                    {% if not user_answer.is_correct %}
+                    <p class="correct-answer">Correct Answer:
+                        {% if user_answer.question.question_type == 'MCQ' %}
+                        {{ user_answer.question.correct_choice }}
+                        {% elif user_answer.question.question_type == 'TF' %}
+                        {{ user_answer.question.is_true|yesno:"True,False" }}
+                        {% elif user_answer.question.question_type == 'FIB' %}
+                        {{ user_answer.question.blanks_answer }}
+                        {% endif %}
+                    </p>
+                    {% endif %}
+                    <p class="result {% if user_answer.is_correct %}correct{% else %}incorrect{% endif %}">
+                        {% if user_answer.is_correct %}Correct{% else %}Incorrect{% endif %}
+                    </p>
+                    {% if user_answer.question.explanation %}
+                    <p><strong>Explanation:</strong> {{ user_answer.question.explanation }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+            <div id="navigation-buttons">
+                <button type="button" id="prev-button" style="display: none;">Previous</button>
+                <button type="button" id="next-button">Next</button>
+            </div>
+
+            <a href="{% url 'exam_dashboard' %}" class="btn btn-primary">Return to Dashboard</a>
+
+            <style>
+                .correct {
+                    color: green;
+                }
+
+                .incorrect {
+                    color: red;
+                }
+
+                .passed {
+                    color: green;
+                    font-weight: bold;
+                }
+
+                .failed {
+                    color: red;
+                    font-weight: bold;
+                }
+            </style>
+        </div>
+        <div class="exam_quest_extra_information">
+            <!-- Additional information can be added here -->
+        </div>
+    </div>
+</div>
+{%endblock %}
+
+
+
+
+{%block script%}
+
+<!-- <script src="{% static 'exam_quest/js/exam.js' %}"></script> -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const questions = document.querySelectorAll('.question-result');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const currentQuestionSpan = document.getElementById('current-question');
+        let currentQuestion = 0;
+
+        function showQuestion(index) {
+            questions.forEach((q, i) => {
+                q.style.display = i === index ? 'block' : 'none';
+            });
+            currentQuestionSpan.textContent = index + 1;
+            prevButton.style.display = index === 0 ? 'none' : 'inline';
+            nextButton.style.display = index === questions.length - 1 ? 'none' : 'inline';
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        // Initialize the first question
+        showQuestion(0);
+    });
+</script>
+{%endblock%}

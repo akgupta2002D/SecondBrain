@@ -35,4 +35,11 @@
 ## Progress_portal App
 - [ ]  Write planning documenation for this progress_portal app.
 - [x]  We can also create a USerManager to change how user is created.
+- [ ]  
+## OCR extraction App
+- [x]  Add in-file documentation for the app
+- [ ]  Add documentation for the app
+- [ ]  
+- [ ]  Create Figma Design for the app
+- [ ]  It has huge problems: Mistakens nepali digit for english ones, spacing is not preserved at all, symbols are good.
 

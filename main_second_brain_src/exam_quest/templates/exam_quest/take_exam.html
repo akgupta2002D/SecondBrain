@@ -1,0 +1,149 @@
+{% extends 'base_layout/home.html' %}
+{% load static %}
+{%block title%} Take Exam{%endblock%}
+
+
+{%block css%}
+<link rel="stylesheet" href="{% static 'exam_quest/css/dashboard.css' %}" />
+
+{%endblock%}
+
+
+
+{%block app%}
+<div class="exam_quest_main">
+    <div class="exam_quest_dashboard_navbar">
+        <h2 class="app_themed_text">Exam Quest</h2>
+        <div class="exam_quest_navbar_items">
+            <div id="quick_navigation">
+                <h3>Quick Navigation</h3>
+                <div class="dashboard-section">
+                    <h4>Classes</h4>
+                    <ul>
+                        {% for class in classes %}
+                        <li>{{ class.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="dashboard-section">
+                    <h4>Subjects</h4>
+                    <ul>
+                        {% for subject in subjects %}
+                        <li>{{ subject.name }} ({{ subject.class_level }})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="dashboard-section">
+                    <h4>Topics</h4>
+                    <ul>
+                        {% for topic in topics %}
+                        <li>{{ topic.name }} ({{ topic.subject }})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="dashboard-section">
+                    <h4>Available Exams</h4>
+                    <ul>
+                        {% for exam in exams %}
+                        <li>{{ exam.title }} ({{ exam.subject }})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="exam_quest_content_area">
+        <div class="user_information">
+            <!-- User information can be added here -->
+            <h1>{{ exam.title }}</h1>
+            <div id="exam-progress">
+                Question <span id="current-question">1</span> of {{ questions|length }}
+            </div>
+            <form id="exam-form" method="post" action="{% url 'submit_exam' exam.id %}">
+                {% csrf_token %}
+                {% for question in questions %}
+                <div class="question" id="question-{{ forloop.counter }}" {% if not forloop.first %}
+                    style="display: none;" {% endif %}>
+                    <h3>{{ question.text }}</h3>
+                    {% if question.image %}
+                    <img src="{{ question.image.url }}" alt="Question image">
+                    {% endif %}
+
+                    {% if question.question_type == 'MCQ' %}
+                    <input type="radio" name="question_{{ question.id }}" value="A"> {{ question.choice_a }}<br>
+                    <input type="radio" name="question_{{ question.id }}" value="B"> {{ question.choice_b }}<br>
+                    <input type="radio" name="question_{{ question.id }}" value="C"> {{ question.choice_c }}<br>
+                    <input type="radio" name="question_{{ question.id }}" value="D"> {{ question.choice_d }}<br>
+                    {% elif question.question_type == 'TF' %}
+                    <input type="radio" name="question_{{ question.id }}" value="True"> True<br>
+                    <input type="radio" name="question_{{ question.id }}" value="False"> False<br>
+                    {% elif question.question_type == 'FIB' %}
+                    <input type="text" name="question_{{ question.id }}" placeholder="Your answer">
+                    {% else %}
+                    <textarea name="question_{{ question.id }}" rows="4" cols="50"></textarea>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <div id="navigation-buttons">
+                    <button type="button" id="prev-button" style="display: none;">Previous</button>
+                    <button type="button" id="next-button">Next</button>
+                    <button type="submit" id="submit-button" style="display: none;">Submit Exam</button>
+                </div>
+            </form>
+        </div>
+        <div class="exam_quest_extra_information">
+            <!-- Additional information can be added here -->
+        </div>
+    </div>
+</div>
+{%endblock %}
+
+
+
+
+{%block script%}
+
+<!-- <script src="{% static 'exam_quest/js/exam.js' %}"></script> -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const questions = document.querySelectorAll('.question');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const submitButton = document.getElementById('submit-button');
+        const currentQuestionSpan = document.getElementById('current-question');
+        let currentQuestion = 0;
+
+        function showQuestion(index) {
+            questions.forEach((q, i) => {
+                q.style.display = i === index ? 'block' : 'none';
+            });
+            currentQuestionSpan.textContent = index + 1;
+            prevButton.style.display = index === 0 ? 'none' : 'inline';
+            if (index === questions.length - 1) {
+                nextButton.style.display = 'none';
+                submitButton.style.display = 'inline';
+            } else {
+                nextButton.style.display = 'inline';
+                submitButton.style.display = 'none';
+            }
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        // Initialize the first question
+        showQuestion(0);
+    });
+</script>
+{%endblock%}
