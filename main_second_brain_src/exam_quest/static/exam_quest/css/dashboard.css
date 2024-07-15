@@ -1,0 +1,69 @@
+.exam_quest_main{
+    display: flex;
+    flex: 1;
+    height: 100vh;
+}
+
+.exam_quest_dashboard_navbar{
+    color: white;
+    flex: 1 1 18%;
+    background-color: var(--DarkColorMain);
+    display: flex;
+    flex-direction: column;
+}
+
+.user_information{
+    flex: 1 2 60%;
+    background-color: white;
+    padding: 2rem;
+}
+
+.exam_quest_extra_information{
+    flex: 1 2 40%;
+    background-color: white;
+    border-left: 1px solid #828282aa;
+}
+
+
+
+.svg_label_collection{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.exam_quest_dashboard_navbar .app_themed_text{
+    font-size: 28px;
+    padding-top: 28px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.exam_quest_navbar_items{
+    text-align: left;
+    margin-left: 2rem;
+}
+
+.exam_quest_content_area{
+    margin-top: 6.5rem;
+    flex: 1 1 82%;
+    display: flex;
+    border-top: 1px solid #828282aa;
+}
+
+.dashboard-section{
+    margin-left: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.dashboard-section ul li{
+    list-style: none;
+    margin-left: 1rem;
+}
+
+.dashboard-section h4{
+    text-decoration-line: underline;
+}

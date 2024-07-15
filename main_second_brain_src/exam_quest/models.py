@@ -72,6 +72,8 @@ class Question(models.Model):
         help_text="Time limit in seconds", null=True, blank=True)
     explanation = models.TextField(
         blank=True, help_text="Explanation for the correct answer")
+    hint = models.TextField(
+        blank=True, help_text="Hint for the question")
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

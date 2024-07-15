@@ -1,0 +1,72 @@
+{% extends 'base_layout/home.html' %}
+{% load static %}
+{%block title%} Exam Quest {%endblock%}
+
+
+{%block css%}
+<link rel="stylesheet" href="{% static 'exam_quest/css/dashboard.css' %}" />
+
+{%endblock%}
+
+
+
+{%block app%}
+<div class="exam_quest_main">
+    <div class="exam_quest_dashboard_navbar">
+        <h2 class="app_themed_text">Exam Quest</h2>
+        <div class="exam_quest_navbar_items">
+            <div id="quick_navigation">
+                <h3>Quick Navigation</h3>
+                <div class="dashboard-section">
+                    <h4>Classes</h4>
+                    <ul>
+                        {% for class in classes %}
+                        <li>{{ class.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="dashboard-section">
+                    <h4>Subjects</h4>
+                    <ul>
+                        {% for subject in subjects %}
+                        <li>{{ subject.name }} ({{ subject.class_level }})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="dashboard-section">
+                    <h4>Topics</h4>
+                    <ul>
+                        {% for topic in topics %}
+                        <li>{{ topic.name }} ({{ topic.subject }})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="dashboard-section">
+                    <h4>Available Exams</h4>
+                    <ul>
+                        {% for exam in exams %}
+                        <li>{{ exam.title }} ({{ exam.subject }})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="exam_quest_content_area">
+        <div class="user_information">
+            <!-- User information can be added here -->
+        </div>
+        <div class="exam_quest_extra_information">
+            <!-- Additional information can be added here -->
+        </div>
+    </div>
+</div>
+{%endblock %}
+
+
+
+
+{%block script%}
+
+<!-- <script src="{% static 'exam_quest/js/exam.js' %}"></script> -->
+{%endblock%}
