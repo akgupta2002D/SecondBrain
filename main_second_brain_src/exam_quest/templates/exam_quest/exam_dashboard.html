@@ -1,0 +1,73 @@
+{% extends 'exam_quest/user_dashboard.html' %}
+{% load static %}
+{%block title%} Take Exam{%endblock%}
+
+
+{%block css_exam%}
+
+{%endblock%}
+
+
+
+{%block content_exam_quest%}
+
+<div class="exam_quest_content_area">
+    <div class="user_information">
+        <!-- User information can be added here -->
+        <section id="available-exams">
+            <h2>Available Exams</h2>
+            {% if available_exams %}
+            <ul>
+                {% for exam in available_exams %}
+                <li>
+                    <h3>{{ exam.title }}</h3>
+                    <p>{{ exam.description }}</p>
+                    <p>Duration: {{ exam.duration }} minutes</p>
+                    <p>Subject: {{ exam.subject }}</p>
+                    <a href="{% url 'exam_view' exam.id %}" class="btn btn-primary">Start Exam</a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No exams are currently available.</p>
+            {% endif %}
+        </section>
+    </div>
+    <div class="exam_quest_extra_information">
+        <!-- Additional information can be added here -->
+        <section id="exam-history">
+            <h2>Your Exam History</h2>
+            {% if user_attempts %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Exam</th>
+                        <th>Date</th>
+
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for attempt in user_attempts %}
+                    <tr>
+                        <td>{{ attempt.exam.title }}</td>
+                        <td>{{ attempt.start_time|date:"F d, Y" }}</td>
+
+                        <td>
+                            {% if attempt.is_completed %}
+                            <a href="{% url 'exam_result' attempt.id %}" class="btn btn-secondary">View Result</a>
+                            {% else %}
+                            <a href="{% url 'exam_view' attempt.exam.id %}" class="btn btn-warning">Resume Exam</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>You haven't taken any exams yet.</p>
+            {% endif %}
+        </section>
+    </div>
+</div>
+{%endblock %}

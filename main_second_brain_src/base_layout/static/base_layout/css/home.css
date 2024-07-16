@@ -32,7 +32,7 @@
     align-items: center;
     position: fixed;
     height: 100%;
-    z-index: 2;
+    z-index: 1000;
     
 }
 
@@ -65,7 +65,7 @@
     bottom: 0;
     transform: translateX(-250px); /* Initially hide the navbar */
     transition: transform 0.5s ease;
-    z-index: 1;
+    z-index: 50;
 }
 
 .app_themed_text{
@@ -98,4 +98,10 @@
     width: inherit;
     border: 1px solid rgba(255, 255, 255, 0.553);
     margin: 0.5rem 0.5rem;
+}
+
+.line_black{
+    width: inherit;
+    border: 1px solid rgba(43, 42, 42, 0.553);
+    margin: 0.5rem 0rem;
 }

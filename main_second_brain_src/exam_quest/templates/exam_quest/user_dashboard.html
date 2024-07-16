@@ -5,6 +5,13 @@
 
 {%block css%}
 <link rel="stylesheet" href="{% static 'exam_quest/css/dashboard.css' %}" />
+<link rel="stylesheet" href="{% static 'exam_quest/css/exam_dashboard_table.css' %}" />
+
+
+
+{%block css_exam%}
+
+{%endblock%}
 
 {%endblock%}
 
@@ -12,6 +19,7 @@
 
 {%block app%}
 <div class="exam_quest_main">
+    <button class="navbar-toggle" id="navbarToggle">☰</button>
     <div class="exam_quest_dashboard_navbar">
         <h2 class="app_themed_text">Exam Quest</h2>
         <div class="exam_quest_navbar_items">
@@ -46,90 +54,41 @@
                     <ul>
                         {% for exam in exams %}
                         <li>{{ exam.title }} ({{ exam.subject }})</li>
+                        <a href="{% url 'exam_result_dashboard' %}" class="btn btn-primary">{{ exam.title }} ({{
+                            exam.subject }})</a>
                         {% endfor %}
                     </ul>
                 </div>
+                <div class="dashboard-section">
+                    <h4><a href="{% url 'exam_dashboard' %}">Return to Dashboard</a></h4>
+
+                </div>
+
+
             </div>
         </div>
     </div>
+    {%block content_exam_quest%}
     <div class="exam_quest_content_area">
         <div class="user_information">
             <!-- User information can be added here -->
-            <section id="available-exams">
-                <h2>Available Exams</h2>
-                {% if available_exams %}
-                <ul>
-                    {% for exam in available_exams %}
-                    <li>
-                        <h3>{{ exam.title }}</h3>
-                        <p>{{ exam.description }}</p>
-                        <p>Duration: {{ exam.duration }} minutes</p>
-                        <p>Subject: {{ exam.subject }}</p>
-                        <a href="{% url 'exam_view' exam.id %}" class="btn btn-primary">Start Exam</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                <p>No exams are currently available.</p>
-                {% endif %}
-            </section>
+
         </div>
         <div class="exam_quest_extra_information">
             <!-- Additional information can be added here -->
-            <section id="exam-history">
-                <h2>Your Exam History</h2>
-                {% if user_attempts %}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Exam</th>
-                            <th>Date</th>
-                            <th>Score</th>
-                            <th>Result</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for attempt in user_attempts %}
-                        <tr>
-                            <td>{{ attempt.exam.title }}</td>
-                            <td>{{ attempt.start_time|date:"F d, Y" }}</td>
-                            <td>{{ attempt.score|default_if_none:"-" }}</td>
-                            <td>
-                                {% if attempt.is_completed %}
-                                    {% if attempt.score >= 6 %}
-                                        Passed
-                                    {% else %}
-                                        Insufficient
-                                    {% endif %}
-                                {% else %}
-                                    In Progress
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if attempt.is_completed %}
-                                <a href="{% url 'exam_result' attempt.id %}" class="btn btn-secondary">View Result</a>
-                                {% else %}
-                                <a href="{% url 'exam_view' attempt.exam.id %}" class="btn btn-warning">Resume Exam</a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                {% else %}
-                <p>You haven't taken any exams yet.</p>
-                {% endif %}
-            </section>
+
         </div>
+        {%endblock %}
     </div>
-</div>
-{%endblock %}
+
+    {%endblock %}
 
 
 
 
-{%block script%}
+    {%block script%}
 
-<!-- <script src="{% static 'exam_quest/js/exam.js' %}"></script> -->
-{%endblock%}
+    <script src="{% static 'exam_quest/js/navbar_toggle.js' %}"></script>
+    {%block script_exams%}
+    {%endblock%}
+    {%endblock%}

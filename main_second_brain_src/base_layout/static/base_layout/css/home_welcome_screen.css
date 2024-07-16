@@ -13,10 +13,13 @@
     justify-content: center;
     position: fixed;
     width:-webkit-fill-available;
+    z-index: 5;
+    /* background-color: white; */
 }
 .base_logo img{
     padding-top: 17px;
     width: 80px;
 }
+
 
 

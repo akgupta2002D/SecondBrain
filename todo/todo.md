@@ -42,4 +42,8 @@
 - [ ]  
 - [ ]  Create Figma Design for the app
 - [ ]  It has huge problems: Mistakens nepali digit for english ones, spacing is not preserved at all, symbols are good.
-
+## Exam Quest:
+- [ ]  If user doesn't select an answer, their is an integrity issue.
+- [ ]  The content when scrolling goes behind the base logo.
+- [ ]  Fix all the z-index in css.
+- [ ]  The hint function isn't working as expected

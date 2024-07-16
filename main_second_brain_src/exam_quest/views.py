@@ -28,6 +28,19 @@ def view_exam_dashboard(request):
     return render(request, "exam_quest/user_dashboard.html", context)
 
 
+def exam_and_result_dashboard(request):
+    available_exams = Exam.objects.filter(is_active=True)
+    user_attempts = ExamAttempt.objects.filter(
+        user=request.user).select_related('exam')
+
+    context = {
+        'available_exams': available_exams,
+        'user_attempts': user_attempts,
+    }
+
+    return render(request, "exam_quest/exam_dashboard.html", context)
+
+
 @login_required
 def exam_view(request, exam_id):
     exam = get_object_or_404(Exam, pk=exam_id)
