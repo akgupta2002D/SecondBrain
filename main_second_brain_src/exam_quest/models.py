@@ -108,16 +108,27 @@ class Question(models.Model):
         if self.question_type in ['MCQ', 'IMG'] and not self.correct_choice:
             raise ValidationError(
                 "Multiple Choice and Image Choice questions must have a correct choice specified.")
-        elif self.question_type == 'MCQ' and not self.correct_choice:
-            raise ValidationError(
-                "Multiple Choice questions must have a correct choice specified.")
-
         elif self.question_type == 'TF' and self.is_true is None:
             raise ValidationError(
                 "True/False questions must have the is_true field set.")
         elif self.question_type == 'FIB' and not self.blanks_answer:
             raise ValidationError(
                 "Fill in the Blanks questions must have a blanks_answer specified.")
+        elif self.question_type == 'IMG' and not any([self.choice_a_image, self.choice_b_image, self.choice_c_image, self.choice_d_image]):
+            raise ValidationError(
+                "Image Choice questions must have at least one image uploaded.")
+
+    def get_correct_answer(self):
+        if self.question_type == 'MCQ':
+            return getattr(self, f'choice_{self.correct_choice.lower()}')
+        elif self.question_type == 'IMG':
+            return getattr(self, f'choice_{self.correct_choice.lower()}_image')
+        elif self.question_type == 'TF':
+            return 'True' if self.is_true else 'False'
+        elif self.question_type == 'FIB':
+            # Remove underscores and extra spaces
+            return ' '.join(word for word in self.blanks_answer.replace('_', '').split() if word)
+        return None
 
 
 class Exam(models.Model):
@@ -207,12 +218,15 @@ class UserAnswer(models.Model):
 
     def clean(self):
         from django.core.exceptions import ValidationError
-        if self.question.question_type == 'MCQ' and not self.selected_choice:
+        if self.question.question_type in ['MCQ', 'IMG'] and not self.selected_choice:
             raise ValidationError(
-                "Must select a choice for Multiple Choice questions.")
+                "Must select a choice for Multiple Choice and Image Choice questions.")
         elif self.question.question_type == 'TF' and self.true_false_answer is None:
             raise ValidationError(
                 "Must provide a True/False answer for True/False questions.")
         elif self.question.question_type == 'FIB' and not self.fill_blanks_answer:
             raise ValidationError(
                 "Must provide an answer for Fill in the Blanks questions.")
+        elif self.question.question_type in ['SA', 'LA'] and not self.text_answer:
+            raise ValidationError(
+                "Must provide a text answer for Short Answer and Long Answer questions.")
