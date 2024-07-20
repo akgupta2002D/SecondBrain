@@ -1,0 +1,88 @@
+{% extends 'exam_quest/user_dashboard.html' %}
+{% load static %}
+
+{% block title %}Create Question{% endblock %}
+
+{% block css_exam %}
+<link rel="stylesheet" href="{% static 'exam_quest/css/create_question.css' %}">
+{% endblock %}
+
+{% block content_exam_quest %}
+<div class="exam_quest_content_area">
+    <div class="user_information">
+        <section id="create-question">
+            <h2>Create a New Question</h2>
+            <form method="post" enctype="multipart/form-data" id="questionForm" action="{% url 'create_question' %}">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="id_text">Question Text:</label>
+                    {{ form.text }}
+                    <span class="error-message" id="error_text"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_topic">Topic:</label>
+                    {{ form.topic }}
+                    <span class="error-message" id="error_topic"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_difficulty">Difficulty:</label>
+                    {{ form.difficulty }}
+                    <span class="error-message" id="error_difficulty"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_question_type">Question Type:</label>
+                    {{ form.question_type }}
+                    <span class="error-message" id="error_question_type"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_points">Points:</label>
+                    {{ form.points }}
+                    <span class="error-message" id="error_points"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_image">Question Image:</label>
+                    {{ form.image }}
+                    <div id="imagePreview"></div>
+                    <span class="error-message" id="error_image"></span>
+                </div>
+
+                <div id="dynamicFields">
+                    <!-- Dynamic fields will be inserted here -->
+                </div>
+
+                <div class="form-group">
+                    <label for="id_explanation">Explanation:</label>
+                    {{ form.explanation }}
+                    <span class="error-message" id="error_explanation"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_hint">Hint:</label>
+                    {{ form.hint }}
+                    <span class="error-message" id="error_hint"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create Question</button>
+            </form>
+        </section>
+    </div>
+    <div class="exam_quest_extra_information">
+        <section id="question-list">
+            <h2>Created Questions</h2>
+            <ul id="questionListContainer">
+                <!-- Dynamically populated list of questions will go here -->
+            </ul>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block script_exams %}
+<script src="{% static 'js/create_question.js' %}"></script>
+{% endblock %}
