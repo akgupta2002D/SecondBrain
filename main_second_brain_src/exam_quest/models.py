@@ -53,6 +53,7 @@ class Question(models.Model):
         ('SA', 'Short Answer'),
         ('LA', 'Long Answer'),
         ('MAT', 'Matching'),
+        ('IMG', 'Image Choice'),
     ]
 
     text = models.TextField()
@@ -76,6 +77,15 @@ class Question(models.Model):
     choice_b = models.TextField(blank=True)
     choice_c = models.TextField(blank=True)
     choice_d = models.TextField(blank=True)
+    choice_a_image = models.ImageField(
+        upload_to='choice_images/', null=True, blank=True)
+    choice_b_image = models.ImageField(
+        upload_to='choice_images/', null=True, blank=True)
+    choice_c_image = models.ImageField(
+        upload_to='choice_images/', null=True, blank=True)
+    choice_d_image = models.ImageField(
+        upload_to='choice_images/', null=True, blank=True)
+
     correct_choice = models.CharField(max_length=1, choices=[(
         'A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')], blank=True)
 
@@ -90,11 +100,18 @@ class Question(models.Model):
     def __str__(self):
         return f"Question {self.id}: {self.text[:20]}..."
 
+    def has_image_choices(self):
+        return self.question_type == 'IMG' and any([self.choice_a_image, self.choice_b_image, self.choice_c_image, self.choice_d_image])
+
     def clean(self):
         from django.core.exceptions import ValidationError
-        if self.question_type == 'MCQ' and not self.correct_choice:
+        if self.question_type in ['MCQ', 'IMG'] and not self.correct_choice:
+            raise ValidationError(
+                "Multiple Choice and Image Choice questions must have a correct choice specified.")
+        elif self.question_type == 'MCQ' and not self.correct_choice:
             raise ValidationError(
                 "Multiple Choice questions must have a correct choice specified.")
+
         elif self.question_type == 'TF' and self.is_true is None:
             raise ValidationError(
                 "True/False questions must have the is_true field set.")
