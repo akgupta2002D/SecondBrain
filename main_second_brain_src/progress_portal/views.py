@@ -18,8 +18,10 @@ from .serializers import LifeGoalSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
 from .utils import get_all_life_goals_sync, get_projects_for_life_goal_sync
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def viewProgressPortal(request):
     """
     Renders the progress portal dashboard.
@@ -33,6 +35,7 @@ def viewProgressPortal(request):
     return render(request, 'progress_portal/dashboard.html')
 
 
+@login_required
 async def get_all_life_goals(request):
     """
     Asynchronously retrieves all life goals with their associated projects.
@@ -59,6 +62,7 @@ async def get_all_life_goals(request):
     return JsonResponse(data, safe=False)
 
 
+@login_required
 async def life_goal_detail(request, pk):
     """
     Asynchronously retrieves details of a specific life goal.
@@ -88,6 +92,7 @@ async def life_goal_detail(request, pk):
     return JsonResponse(data)
 
 
+@login_required
 async def project_detail(request, pk):
     """
     Asynchronously retrieves details of a specific project.

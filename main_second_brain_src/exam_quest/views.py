@@ -8,6 +8,7 @@ from .models import Class, Subject, Topic, Exam
 # Create your views here.
 
 
+@login_required
 def view_exam_dashboard(request):
     classes = Class.objects.all()
     subjects = Subject.objects.all()
@@ -28,6 +29,7 @@ def view_exam_dashboard(request):
     return render(request, "exam_quest/user_dashboard.html", context)
 
 
+@login_required
 def exam_and_result_dashboard(request):
     available_exams = Exam.objects.filter(is_active=True)
     user_attempts = ExamAttempt.objects.filter(

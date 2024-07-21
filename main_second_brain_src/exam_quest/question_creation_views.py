@@ -3,8 +3,10 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from .forms import QuestionForm
 from .models import Question
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 @require_http_methods(["GET", "POST"])
 def create_question(request):
     if request.method == 'POST':
@@ -22,6 +24,7 @@ def create_question(request):
     return render(request, 'exam_quest/create_questions.html', {'form': form})
 
 
+@login_required
 @require_http_methods(["GET"])
 def question_list(request):
     questions = Question.objects.all().order_by('-created_at')
@@ -29,6 +32,7 @@ def question_list(request):
     return JsonResponse({'questions': questions_data})
 
 
+@login_required
 def question_to_dict(question):
     return {
         'id': question.id,

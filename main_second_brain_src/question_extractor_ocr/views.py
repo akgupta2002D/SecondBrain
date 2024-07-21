@@ -10,9 +10,12 @@ from django.http import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from .models import UploadedFile
 from .forms import FileUploadForm
+from django.contrib.auth.decorators import login_required
+
 from .extract_text_util import extract_text
 
 
+@login_required
 def upload_view(request):
     """
     Handle file uploads and render the upload form.
@@ -52,6 +55,7 @@ def upload_view(request):
     return render(request, 'question_extractor_ocr/upload_and_view.html', {'form': form})
 
 
+@login_required
 def extract_text_view(request):
     """
     Extract text from an uploaded file.
