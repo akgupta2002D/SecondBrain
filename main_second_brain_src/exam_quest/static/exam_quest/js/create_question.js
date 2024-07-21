@@ -1,7 +1,8 @@
 
 // Call this function when the page loads
-document.addEventListener('DOMContentLoaded', fetchQuestionList);
+
 document.addEventListener('DOMContentLoaded', function() {
+    fetchQuestionList();
 
     
     const questionTypeSelect = document.getElementById('id_question_type');
@@ -92,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const img = document.createElement('img');
                 img.src = e.target.result;
                 img.style.maxWidth = '200px';
-                previewDiv.innerHTML = '';
+                // previewDiv.innerHTML = '';
                 previewDiv.appendChild(img);
             }
             reader.readAsDataURL(input.files[0]);
@@ -113,8 +114,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form submission handling
     questionForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        console.log('Form submitted');
         const formData = new FormData(this);
-
+    
         fetch(this.action, {
             method: 'POST',
             body: formData,
@@ -122,8 +124,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 'X-CSRFToken': getCookie('csrftoken')
             }
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log('Response status:', response.status);
+            return response.json();
+        })
         .then(data => {
+            console.log('Response data:', data);
             if (data.success) {
                 showSuccessMessage('Question created successfully!');
                 this.reset();
@@ -196,15 +202,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchQuestionList() {
-    fetch('/exam-quest/questions/')  // Adjust this URL to match your actual URL
+    fetch('/exams/questions/')  // Adjust this URL to match your actual URL
         .then(response => response.json())
         .then(data => {
             const listContainer = document.getElementById('questionListContainer');
             listContainer.innerHTML = '';  // Clear existing list
             data.questions.forEach(question => {
                 const listItem = document.createElement('li');
+                const trimmedText = question.text.length > 50 ? question.text.substring(0, 50) + '...' : question.text;
                 listItem.innerHTML = `
-                    <strong>${question.text}</strong><br>
+                    <strong>${trimmedText}</strong><br>
                     Topic: ${question.topic}<br>
                     Difficulty: ${question.difficulty}<br>
                     Type: ${question.question_type}

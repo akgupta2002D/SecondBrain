@@ -2,11 +2,11 @@ from matplotlib import pyplot as plt
 from matplotlib_venn import venn2, venn2_circles
 
 # Variables to control the display
-setA = 250  # Size of set A
-setB = 200  # Size of set B
-AnB = 100   # Size of intersection A and B
-U = 475     # Size of universal set
-U_AUB = 25  # Size of U - (A union B)
+setA = 50  # Size of set A
+setB = 60  # Size of set B
+AnB = 20   # Size of intersection A and B
+U_AUB = 10  # Size of U - (A union B)
+U = (setA + setB + U_AUB) - AnB     # Size of universal set
 labelA = 'A'  # Label for set A
 labelB = 'B'  # Label for set B
 
@@ -57,7 +57,7 @@ ax.set_yticks([])  # Remove y-axis ticks
 # Add annotations
 ax.text(0.90, 0.05, str(U_AUB), fontsize=18, fontweight='bold',
         ha='right', va='bottom', transform=ax.transAxes)
-ax.text(0.98, 0.92, "U: " + str(U), fontsize=18, fontweight='bold',
+ax.text(0.98, 1.05, "U: " + str(U), fontsize=18, fontweight='bold',
         ha='right', va='bottom', transform=ax.transAxes)
 
 # Display the plot

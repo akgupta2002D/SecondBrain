@@ -39,11 +39,29 @@
 ## OCR extraction App
 - [x]  Add in-file documentation for the app
 - [ ]  Add documentation for the app
-- [ ]  
 - [ ]  Create Figma Design for the app
 - [ ]  It has huge problems: Mistakens nepali digit for english ones, spacing is not preserved at all, symbols are good.
 ## Exam Quest:
 - [ ]  If user doesn't select an answer, their is an integrity issue.
 - [ ]  The content when scrolling goes behind the base logo.
 - [ ]  Fix all the z-index in css.
-- [ ]  The hint function isn't working as expected
+- [x]  The hint function isn't working as expected
+- [ ]  
+
+
+- [ ]   17 July: Pause - No new feature
+Don't move ahead before finalizing:
+1. Documentation
+2. Figma Design and User flows
+3. All CSS, try to combine them
+4. Make each page responsive
+5. Document Javascript, html, and css
+6. Fix or remove all todo task above.
+7. Before starting again, clearly plan everything:
+   1. Intended Feature
+   2. User Flow 
+   3. Figma WireFrames
+   4. Documentation of the idea
+   5. Documentation of code
+   6. Testing of code
+   7. UI testing for responsiveness

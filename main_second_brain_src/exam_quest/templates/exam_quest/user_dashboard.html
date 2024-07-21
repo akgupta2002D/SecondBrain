@@ -50,14 +50,11 @@
                     </ul>
                 </div>
                 <div class="dashboard-section">
-                    <h4>Available Exams</h4>
-                    <ul>
-                        {% for exam in exams %}
-                        <li>{{ exam.title }} ({{ exam.subject }})</li>
-                        <a href="{% url 'exam_result_dashboard' %}" class="btn btn-primary">{{ exam.title }} ({{
-                            exam.subject }})</a>
-                        {% endfor %}
-                    </ul>
+
+
+                    <h4><a href="{% url 'exam_result_dashboard' %}" class="btn btn-primary">Exam Dashboard</a></h4>
+
+
                 </div>
                 <div class="dashboard-section">
                     <h4><a href="{% url 'exam_dashboard' %}">Return to Dashboard</a></h4>
