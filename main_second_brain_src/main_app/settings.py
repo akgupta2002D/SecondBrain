@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "docs",
     "rest_framework",
     "exam_quest.apps.ExamQuestConfig",
+    "whitenoise.runserver_nostatic",
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "main_app.urls"
