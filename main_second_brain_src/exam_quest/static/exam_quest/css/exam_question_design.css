@@ -205,3 +205,12 @@
 }
 
 
+.image-choice {
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+}
+.image-choice img {
+  max-width: 150px;
+  max-height: 150px;
+}

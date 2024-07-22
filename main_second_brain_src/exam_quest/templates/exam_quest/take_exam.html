@@ -39,7 +39,41 @@
                     <p><input type="radio" name="question_{{ question.id }}" value="C"> {{ question.choice_c }}<br></p>
                     <p><input type="radio" name="question_{{ question.id }}" value="D"> {{ question.choice_d }}<br></p>
                 </div>
-
+                {% elif question.question_type == 'IMG' %}
+                <div class="image-choices">
+                    {% if question.choice_a_image %}
+                    <div class="image-choice">
+                        <input type="radio" name="question_{{ question.id }}" value="A" id="choice_a_{{ question.id }}">
+                        <label for="choice_a_{{ question.id }}">
+                            <img src="{{ question.choice_a_image.url }}" alt="Choice A">
+                        </label>
+                    </div>
+                    {% endif %}
+                    {% if question.choice_b_image %}
+                    <div class="image-choice">
+                        <input type="radio" name="question_{{ question.id }}" value="B" id="choice_b_{{ question.id }}">
+                        <label for="choice_b_{{ question.id }}">
+                            <img src="{{ question.choice_b_image.url }}" alt="Choice B">
+                        </label>
+                    </div>
+                    {% endif %}
+                    {% if question.choice_c_image %}
+                    <div class="image-choice">
+                        <input type="radio" name="question_{{ question.id }}" value="C" id="choice_c_{{ question.id }}">
+                        <label for="choice_c_{{ question.id }}">
+                            <img src="{{ question.choice_c_image.url }}" alt="Choice C">
+                        </label>
+                    </div>
+                    {% endif %}
+                    {% if question.choice_d_image %}
+                    <div class="image-choice">
+                        <input type="radio" name="question_{{ question.id }}" value="D" id="choice_d_{{ question.id }}">
+                        <label for="choice_d_{{ question.id }}">
+                            <img src="{{ question.choice_d_image.url }}" alt="Choice D">
+                        </label>
+                    </div>
+                    {% endif %}
+                </div>
                 {% elif question.question_type == 'TF' %}
                 <input type="radio" name="question_{{ question.id }}" value="True"> True<br>
                 <input type="radio" name="question_{{ question.id }}" value="False"> False<br>

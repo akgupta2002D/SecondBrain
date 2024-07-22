@@ -94,8 +94,9 @@ def submit_exam(request, exam_id):
                 question=question
             )
 
-            if question.question_type == 'MCQ':
+            if question.question_type in ['MCQ', 'IMG']:
                 user_answer.selected_choice = answer
+
             elif question.question_type == 'TF':
                 user_answer.true_false_answer = answer == 'True'
             elif question.question_type == 'FIB':
@@ -103,10 +104,10 @@ def submit_exam(request, exam_id):
             else:
                 user_answer.text_answer = answer
 
-            # Automatically grade MCQ and TF questions
-            if question.question_type in ['MCQ', 'TF']:
+            # Automatically grade MCQ, IMG, and TF questions
+            if question.question_type in ['MCQ', 'IMG', 'TF']:
                 user_answer.is_correct = (
-                    (question.question_type == 'MCQ' and answer == question.correct_choice) or
+                    (question.question_type in ['MCQ', 'IMG'] and answer == question.correct_choice) or
                     (question.question_type == 'TF' and (
                         answer == 'True') == question.is_true)
                 )

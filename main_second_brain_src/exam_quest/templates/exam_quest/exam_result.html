@@ -35,6 +35,8 @@
                     <span class="user-answer {% if user_answer.is_correct %}correct{% else %}incorrect{% endif %}">
                         {% if user_answer.question.question_type == 'MCQ' %}
                         {{ user_answer.selected_choice }}
+                        {% elif user_answer.question.question_type == 'IMG' %}
+                        {{ user_answer.selected_choice }}
                         {% elif user_answer.question.question_type == 'TF' %}
                         {{ user_answer.true_false_answer|yesno:"True,False" }}
                         {% elif user_answer.question.question_type == 'FIB' %}
@@ -54,6 +56,33 @@
                         <p>B: {{ user_answer.question.choice_b }}</p>
                         <p>C: {{ user_answer.question.choice_c }}</p>
                         <p>D: {{ user_answer.question.choice_d }}</p>
+                        {% elif user_answer.question.question_type == 'IMG' %}
+                        <div class="image-choices">
+                            {% if user_answer.question.choice_a_image %}
+                            <div class="image-choice">
+                                <p>A:</p>
+                                <img src="{{ user_answer.question.choice_a_image.url }}" alt="Choice A">
+                            </div>
+                            {% endif %}
+                            {% if user_answer.question.choice_b_image %}
+                            <div class="image-choice">
+                                <p>B:</p>
+                                <img src="{{ user_answer.question.choice_b_image.url }}" alt="Choice B">
+                            </div>
+                            {% endif %}
+                            {% if user_answer.question.choice_c_image %}
+                            <div class="image-choice">
+                                <p>C:</p>
+                                <img src="{{ user_answer.question.choice_c_image.url }}" alt="Choice C">
+                            </div>
+                            {% endif %}
+                            {% if user_answer.question.choice_d_image %}
+                            <div class="image-choice">
+                                <p>D:</p>
+                                <img src="{{ user_answer.question.choice_d_image.url }}" alt="Choice D">
+                            </div>
+                            {% endif %}
+                        </div>
                         {% elif user_answer.question.question_type == 'TF' %}
                         {{ user_answer.true_false_answer|yesno:"True,False" }}
                         {% elif user_answer.question.question_type == 'FIB' %}
@@ -66,14 +95,17 @@
                 </p>
                 {% if not user_answer.is_correct %}
                 <p class="correct-answer">Correct Answer:
-                    {% if user_answer.question.question_type == 'MCQ' %}
-                    {{ user_answer.question.correct_choice }}
+                    {% if user_answer.question.question_type == 'MCQ' or user_answer.question.question_type == 'IMG' %}
+                        {{ user_answer.question.correct_choice }}
                     {% elif user_answer.question.question_type == 'TF' %}
-                    {{ user_answer.question.is_true|yesno:"True,False" }}
+                        {{ user_answer.question.is_true|yesno:"True,False" }}
                     {% elif user_answer.question.question_type == 'FIB' %}
-                    {{ user_answer.question.blanks_answer }}
+                        {{ user_answer.question.blanks_answer }}
                     {% endif %}
                 </p>
+
+
+                
                 {% endif %}
                 <p class="result {% if user_answer.is_correct %}correct{% else %}incorrect{% endif %}">
                     Remark: {% if user_answer.is_correct %}Correct{% else %}Incorrect{% endif %}
