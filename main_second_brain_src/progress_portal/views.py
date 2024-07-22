@@ -10,6 +10,8 @@ Functions:
     project_detail:
 """
 
+from .models import LifeGoal, Project
+from django.shortcuts import get_object_or_404
 from asgiref.sync import sync_to_async
 from django.shortcuts import render, redirect
 from rest_framework import viewsets
@@ -36,9 +38,9 @@ def viewProgressPortal(request):
 
 
 @login_required
-async def get_all_life_goals(request):
+def get_all_life_goals(request):
     """
-    Asynchronously retrieves all life goals with their associated projects.
+    Retrieves all life goals with their associated projects.
 
     Args:
         request (HttpRequest): The request object.
@@ -46,10 +48,10 @@ async def get_all_life_goals(request):
     Returns:
         JsonResponse: A JSON response containing all life goals and their projects.
     """
-    life_goals = await sync_to_async(list)(LifeGoal.objects.all())
+    life_goals = LifeGoal.objects.all()
     data = []
     for life_goal in life_goals:
-        projects = await sync_to_async(list)(life_goal.projects.all())
+        projects = life_goal.projects.all()
         projects_data = [{"title": project.title,
                           "description": project.description,
                           "id": project.id} for project in projects]
@@ -63,9 +65,9 @@ async def get_all_life_goals(request):
 
 
 @login_required
-async def life_goal_detail(request, pk):
+def life_goal_detail(request, pk):
     """
-    Asynchronously retrieves details of a specific life goal.
+    Retrieves details of a specific life goal.
 
     Args:
         request (HttpRequest): The request object.
@@ -74,13 +76,10 @@ async def life_goal_detail(request, pk):
     Returns:
         JsonResponse: A JSON response containing the life goal details and associated projects.
     """
-    try:
-        life_goal = await sync_to_async(LifeGoal.objects.get)(pk=pk)
-    except LifeGoal.DoesNotExist:
-        return JsonResponse({'error': 'Life goal not found'}, status=404)
-
-    projects = await sync_to_async(list)(life_goal.projects.all())
-    projects_data = [{"title": project.title, "description": project.description if project.description else None,
+    life_goal = get_object_or_404(LifeGoal, pk=pk)
+    projects = life_goal.projects.all()
+    projects_data = [{"title": project.title,
+                      "description": project.description if project.description else None,
                       "id": project.id} for project in projects]
     data = {
         "life_goal": life_goal.title,
@@ -93,9 +92,9 @@ async def life_goal_detail(request, pk):
 
 
 @login_required
-async def project_detail(request, pk):
+def project_detail(request, pk):
     """
-    Asynchronously retrieves details of a specific project.
+    Retrieves details of a specific project.
 
     Args:
         request (HttpRequest): The request object.
@@ -104,12 +103,8 @@ async def project_detail(request, pk):
     Returns:
         JsonResponse: A JSON response containing the project details and associated to-do items.
     """
-    try:
-        project = await sync_to_async(Project.objects.get)(pk=pk)
-    except Project.DoesNotExist:
-        return JsonResponse({'error': 'Project not found'}, status=404)
-
-    todo_items = await sync_to_async(list)(project.todo_items.all())
+    project = get_object_or_404(Project, pk=pk)
+    todo_items = project.todo_items.all()
     todo_items_data = [
         {
             "id": item.id,

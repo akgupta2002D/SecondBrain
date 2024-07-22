@@ -86,8 +86,9 @@
         const nextButton = document.getElementById('next-button');
         const submitButton = document.getElementById('submit-button');
         const currentQuestionSpan = document.getElementById('current-question');
+        const examForm = document.getElementById('exam-form');
         let currentQuestion = 0;
-
+    
         function showQuestion(index) {
             questions.forEach((q, i) => {
                 q.style.display = i === index ? 'block' : 'none';
@@ -104,30 +105,54 @@
             hintContent.style.display = 'none';
             hintButton.textContent = 'Show Hint';
         }
-
+    
         prevButton.addEventListener('click', () => {
             if (currentQuestion > 0) {
                 currentQuestion--;
                 showQuestion(currentQuestion);
             }
         });
-
+    
         nextButton.addEventListener('click', () => {
             if (currentQuestion < questions.length - 1) {
                 currentQuestion++;
                 showQuestion(currentQuestion);
             }
         });
-
-        submitButton.addEventListener('click', () => {
-            document.getElementById('exam-form').submit();
+    
+        submitButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent form submission
+            if (validateAllQuestions()) {
+                examForm.submit();
+            } else {
+                alert('Please answer all questions before submitting the exam.');
+            }
         });
-
-        
+    
+        function validateAllQuestions() {
+            let allAnswered = true;
+            questions.forEach((question, index) => {
+                const inputs = question.querySelectorAll('input[type="radio"], input[type="text"], textarea');
+                let questionAnswered = false;
+                inputs.forEach(input => {
+                    if ((input.type === 'radio' && input.checked) || 
+                        (input.type === 'text' && input.value.trim() !== '') || 
+                        (input.tagName === 'TEXTAREA' && input.value.trim() !== '')) {
+                        questionAnswered = true;
+                    }
+                });
+                if (!questionAnswered) {
+                    allAnswered = false;
+                    console.log(`Question ${index + 1} is not answered`);
+                }
+            });
+            return allAnswered;
+        }
+    
         const hintButton = document.getElementById('hint-button');
         const hintContent = document.getElementById('hint-content');
         const hintText = document.getElementById('hint-text');
-
+    
         hintButton.addEventListener('click', () => {
             if (hintContent.style.display === 'none') {
                 hintContent.style.display = 'block';
@@ -139,7 +164,7 @@
                 hintButton.textContent = 'Show Hint';
             }
         });
-
+    
         // Initialize the first question
         showQuestion(0);
     });
