@@ -106,6 +106,7 @@ class InvitationKey(models.Model):
     """
     key = models.CharField(max_length=50, unique=True)
     is_used = models.BooleanField(default=False)
+    is_forever = models.BooleanField(default=False)
 
     def __str__(self):
         """

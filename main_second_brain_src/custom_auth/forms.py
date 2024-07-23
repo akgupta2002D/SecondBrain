@@ -56,8 +56,10 @@ class CustomUserCreationForm(UserCreationForm):
         user = super().save(commit=False)
         invitation_key = self.cleaned_data.get('invitation_key')
         invitation = InvitationKey.objects.get(key=invitation_key)
-        invitation.is_used = True
-        invitation.save()
+        if not invitation.is_forever:
+            invitation.is_used = True
+            invitation.save()
+
         if commit:
             user.save()
         return user
