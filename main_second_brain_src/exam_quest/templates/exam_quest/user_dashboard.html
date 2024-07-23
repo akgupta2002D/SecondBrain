@@ -6,6 +6,8 @@
 {%block css%}
 <link rel="stylesheet" href="{% static 'exam_quest/css/dashboard.css' %}" />
 <link rel="stylesheet" href="{% static 'exam_quest/css/exam_dashboard_table.css' %}" />
+<link rel="stylesheet" href="{% static 'exam_quest/css/navbar_toggle.css' %}" />
+
 
 
 
@@ -20,7 +22,7 @@
 {%block app%}
 <div class="exam_quest_main">
     <button class="navbar-toggle" id="navbarToggle">☰</button>
-    <div class="exam_quest_dashboard_navbar">
+    <div class="exam_quest_dashboard_navbar secondary_navbar">
         <h2 class="app_themed_text">Exam Quest</h2>
         <div class="exam_quest_navbar_items">
             <div id="quick_navigation">

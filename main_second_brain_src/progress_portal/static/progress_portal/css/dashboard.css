@@ -47,3 +47,74 @@
     margin-left: 2rem;
 }
 
+
+.progress_portal_main {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.progress_navbar {
+    color: white;
+    flex: 1 1 18%;
+    background-color: var(--DarkColorMain);
+    display: flex;
+    flex-direction: column;
+}
+
+.task_view {
+    flex: 1 2 58%;
+    background-color: var(--lightDarkColor);
+    padding: 2rem;
+}
+
+.projects_quicknav {
+    flex: 1 2 24%;
+    background-color: var(--lightDarkColor);
+    border-left: 1px solid rgba(255, 255, 255, 0.518);
+}
+
+.svg_label_collection {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.progress_navbar .app_themed_text {
+    font-size: 28px;
+    padding-top: 28px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.progress_portal_navbar_items {
+    text-align: left;
+    margin-left: 2rem;
+}
+
+
+@media screen and (max-width: 768px) {
+    .progress_portal_main {
+        flex-direction: column;
+        border-left: 2px solid rgba(255, 255, 255, 0.518) ;
+    }
+
+    .progress_navbar {
+        display: none; /* Hide the navbar on smaller screens */
+    }
+
+    .task_view {
+        flex: 1 0 auto;
+        
+    }
+
+    .projects_quicknav {
+        flex: 1 0 auto;
+
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.518);
+    }
+}

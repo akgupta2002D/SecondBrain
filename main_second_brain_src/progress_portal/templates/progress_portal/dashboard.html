@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="{% static 'progress_portal/css/project_detail_view.css' %}" />
 <link rel="stylesheet" href="{% static 'progress_portal/css/checkbox.css' %}" />
 <link rel="stylesheet" href="{% static 'progress_portal/css/drop_down.css' %}" />
+<link rel="stylesheet" href="{% static 'exam_quest/css/navbar_toggle.css' %}" />
+
 
 
 
@@ -31,7 +33,8 @@
 
 
 <div class="progress_portal_main">
-    <div class="progress_navbar">
+    <button class="navbar-toggle" id="navbarToggle">☰</button>
+    <div class="progress_navbar secondary_navbar ">
         <h2 class="app_themed_text">Progress Portal</h2>
         <div class="progress_portal_navbar_items">
             <div class="svg_label_collection">
@@ -68,6 +71,8 @@
 
 <script src="{% static 'progress_portal/js/async_lifegoals_query.js' %}"> </script>
 <script src="{% static 'progress_portal/js/async_detail_view.js' %}"> </script>
+<script src="{% static 'exam_quest/js/navbar_toggle.js' %}"></script>
+
 
 
 {%endblock%}

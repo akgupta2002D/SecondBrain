@@ -1,7 +1,7 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     const navbarToggle = document.getElementById('navbarToggle');
-    const navbar = document.querySelector('.exam_quest_dashboard_navbar');
+    const navbar = document.querySelector('.secondary_navbar');
 
     navbarToggle.addEventListener('click', function() {
       navbar.classList.toggle('show-navbar');
