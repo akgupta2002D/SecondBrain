@@ -17,8 +17,24 @@
     {% endif %}
 </div>
 <div class="base_navbar" id="base_navbar">
+    {% if user.is_authenticated %}
+    {% if user.is_student %}
+    <h2 class="app_themed_text">STUDENT PORTAL</h2>
+    {% else %}
     <h2 class="app_themed_text">SECOND BRAIN</h2>
+    {% endif %}
+    {% endif %}
+
     <div class="navbar_app_links_container">
+        {% if user.is_authenticated %}
+        {% if user.is_student %}
+        <!-- Student-specific sidebar content -->
+        <a href="{% url 'exam_dashboard' %}">
+            <button class="navbar_button">
+                Exam Quest
+            </button>
+        </a>
+        {% else %}
         <a href="{% url 'portal_dashboard' %}">
             <button class="navbar_button">
                 Progress Portal
@@ -39,11 +55,18 @@
                 Other App
             </button>
         </a>
-        <a href="{% url 'portal_dashboard' %}">
+
+        {% if user.is_staff %}
+        <a href="{% url 'admin:index' %}">
             <button class="navbar_button">
                 Admin
             </button>
         </a>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+
+
     </div>
 </div>
 <div class="app_display_area">
@@ -57,7 +80,21 @@
     {%block app%}
 
     <div class="app_content_wrapper">
+        {% if user.is_authenticated %}
+        {% if user.is_student %}
+        <div class="card">
+            <div class="card_header">My Skills</div>
+            <div class="card_body">
+                <p><a href="{% url 'exam_result_dashboard' %}">
+                        <button style="color: black; font-size:large;" class="navbar_button">
+                            View Exams
+                        </button>
+                    </a>
+                </p>
 
+            </div>
+        </div>
+        {%else%}
         <div class="card">
             <div class="card_header">My Skills</div>
             <div class="card_body">
@@ -65,6 +102,11 @@
                 <p>How are you?</p>
             </div>
         </div>
+        {%endif%}
+        {%endif%}
+
+
+
 
         <div class="profile_card">
             <div class="profile_image_container">

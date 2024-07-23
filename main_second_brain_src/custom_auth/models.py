@@ -40,11 +40,13 @@ class CustomUser(AbstractUser):
     FAMILY = 'family'
     FRIENDS = 'friends'
     ACQUAINTANCE = 'acquaintance'
+    STUDENT = 'student'
 
     ROLE_CHOICES = (
         (FAMILY, 'Family'),
         (FRIENDS, 'Friends'),
-        (ACQUAINTANCE, 'Acquaintance')
+        (ACQUAINTANCE, 'Acquaintance'),
+        (STUDENT, 'Student')
     )
 
     # Add custom fields
@@ -62,8 +64,6 @@ class CustomUser(AbstractUser):
         """
         Return a string representation of the CustomUser instance.
 
-        Returns:
-            str: String representation of the user in the format 'firstname-role-username'.
         """
         return f'{self.firstname}-{self.role}-{self.username}'
 
@@ -71,17 +71,20 @@ class CustomUser(AbstractUser):
         """
         Check if the user has the family role.
 
-        Returns:
-            bool: True if the user is in the family role, False otherwise.
         """
         return self.role == self.FAMILY
+
+    def is_student(self):
+        """
+        Check if the user has the student role.
+
+        """
+        return self.role == self.STUDENT
 
     def is_friends(self):
         """
         Check if the user has the friends role.
 
-        Returns:
-            bool: True if the user is in the friends role, False otherwise.
         """
         return self.role == self.FRIENDS
 
@@ -89,8 +92,6 @@ class CustomUser(AbstractUser):
         """
         Check if the user has the acquaintance role.
 
-        Returns:
-            bool: True if the user is in the acquaintance role, False otherwise.
         """
         return self.role == self.ACQUAINTANCE
 

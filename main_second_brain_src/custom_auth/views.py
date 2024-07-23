@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm
+from django.urls import reverse
 
 
 def register(request):
@@ -54,7 +55,9 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                # Redirect based on user role
                 return redirect('homepage')
+
     else:
         form = AuthenticationForm()
     rendered_form = form.render("custom_auth/form_custom.html")
