@@ -33,7 +33,7 @@ def view_exam_dashboard(request):
 def exam_and_result_dashboard(request):
     available_exams = Exam.objects.filter(is_active=True)
     user_attempts = ExamAttempt.objects.filter(
-        user=request.user).select_related('exam')
+        user=request.user).select_related('exam').order_by('-end_time')
 
     context = {
         'available_exams': available_exams,
