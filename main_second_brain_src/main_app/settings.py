@@ -12,36 +12,43 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+import environ  # Import django-environ
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Initialize environment variables
+env = environ.Env(
+    DEBUG=(bool, False)  # Define default casting and values
+)
+
+# Set the base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Read the .env file located at the base directory
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
 # settings.py
 PARENT_DIR = os.path.dirname(BASE_DIR)
-# Correct path to Tesseract executable
-TESSERACT_CMD = os.path.join(PARENT_DIR, 'tesseract_exe', 'tesseract.exe')
 
+# Correct path to Tesseract executable from .env
+TESSERACT_CMD = os.path.join(PARENT_DIR, env('TESSERACT_CMD_PATH'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-y-sdr^l580w#$&aouc0q*hh=)6&*+*5934zf9ai5gnm4b$#+*&"
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ["app.ankitgupta.net", "127.0.0.1"]
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 # Github Token
-
-GITHUB_TOKEN = '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'
-
-# Spotify Token
+GITHUB_TOKEN = env('GITHUB_TOKEN')
 
 # Spotify API credentials
-SPOTIFY_CLIENT_ID = '7be6d1f1cf8a47f9b132afed33929d1e'
-SPOTIFY_CLIENT_SECRET = '73f65bce77774d89bf39211da1ee6fea'
-SPOTIFY_REDIRECT_URI = 'http://localhost:8000/callback/'
+SPOTIFY_CLIENT_ID = env('SPOTIFY_CLIENT_ID')
+SPOTIFY_CLIENT_SECRET = env('SPOTIFY_CLIENT_SECRET')
+SPOTIFY_REDIRECT_URI = env('SPOTIFY_REDIRECT_URI')
 
 
 # Application definition
@@ -81,7 +88,7 @@ ROOT_URLCONF = "main_app.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [],  # You can add template directories here
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -156,7 +163,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = 'custom_auth.CustomUser'
 
-
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'homepage'
 
@@ -164,11 +170,12 @@ LOGIN_REDIRECT_URL = 'homepage'
 # For serving sphinx documentation within the django app server
 DOCS_ROOT = os.path.join(BASE_DIR, 'docs/build/html')
 
+
 # For django Allauth
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
+# AUTHENTICATION_BACKENDS = (
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# )
 
 SITE_ID = 1
 
