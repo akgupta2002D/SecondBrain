@@ -27,7 +27,12 @@ urlpatterns = [
     path('ocr/', include('question_extractor_ocr.urls')),
     path('docs/', include('docs.urls')),
     path('progress_portal/', include('progress_portal.urls')),
-    path('exams/', include('exam_quest.urls'))
+    path('exams/', include('exam_quest.urls')),
+    path('transcriber/', include('transcriber.urls')),
+    path('github_data/', include('github_data.urls'))
+
+
+
 ]
 
 if settings.DEBUG:

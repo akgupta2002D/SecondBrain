@@ -30,7 +30,18 @@ SECRET_KEY = "django-insecure-y-sdr^l580w#$&aouc0q*hh=)6&*+*5934zf9ai5gnm4b$#+*&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["13.200.63.148", "127.0.0.1", "app.ankitgupta.net"]
+ALLOWED_HOSTS = ["app.ankitgupta.net", "127.0.0.1"]
+
+# Github Token
+
+GITHUB_TOKEN = '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'
+
+# Spotify Token
+
+# Spotify API credentials
+SPOTIFY_CLIENT_ID = '7be6d1f1cf8a47f9b132afed33929d1e'
+SPOTIFY_CLIENT_SECRET = '73f65bce77774d89bf39211da1ee6fea'
+SPOTIFY_REDIRECT_URI = 'http://localhost:8000/callback/'
 
 
 # Application definition
@@ -46,10 +57,12 @@ INSTALLED_APPS = [
     "base_layout.apps.BaseLayoutConfig",
     "question_extractor_ocr.apps.QuestionExtractorOcrConfig",
     "progress_portal.apps.ProgressPortalConfig",
+    "transcriber.apps.TranscriberConfig",
     "docs",
     "rest_framework",
     "exam_quest.apps.ExamQuestConfig",
     "whitenoise.runserver_nostatic",
+    "github_data.apps.GithubDataConfig",
 ]
 
 MIDDLEWARE = [
@@ -150,3 +163,19 @@ LOGIN_REDIRECT_URL = 'homepage'
 
 # For serving sphinx documentation within the django app server
 DOCS_ROOT = os.path.join(BASE_DIR, 'docs/build/html')
+
+# For django Allauth
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'spotify': {
+        'SCOPE': ['user-top-read'],
+        'AUTH_PARAMS': {'show_dialog': True},
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}

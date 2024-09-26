@@ -1,0 +1,94 @@
+{% extends 'base_layout/home.html' %}
+{% load static %}
+{%block title%} Github Dashboard {%endblock%}
+
+
+{%block css%}
+
+
+
+<!-- Link to external CSS -->
+<link rel="stylesheet" href="{% static 'github_data/css/github_dashboard.css' %}">
+{%block css_github%}
+
+{%endblock%}
+
+{%endblock%}
+
+{%block logo%}
+<div class="base_logo">
+    <img src="{% static 'github_data/images/WhiteLogo.png' %}" alt="main_logo">
+
+</div>
+{%endblock %}
+
+{%block app%}
+
+
+
+<div class="dashboard-container">
+    <!-- GitHub Stats Section -->
+    <div class="github-section">
+        <div class="stats">
+            <div class="stat-box">
+                <h2>Total Repositories</h2>
+                <p>{{ num_repos }}</p>
+            </div>
+            <div class="stat-box">
+                <h2>Latest Commit</h2>
+                <p>{{ latest_commit.commit.message }}</p>
+                <small>By: {{ latest_commit.commit.author.name }} on {{ latest_commit.commit.author.date }}</small>
+            </div>
+        </div>
+
+        <!-- Best Repos Section -->
+        <div class="best-repos">
+            <h2>Top 3 Repositories</h2>
+            <div class="repo-list">
+                {% for repo in best_repos %}
+                <div class="repo-card">
+                    <h3>{{ repo.name }}</h3>
+                    <p>{{ repo.description }}</p>
+                    <ul>
+                        <li>Stars: {{ repo.stargazers_count }}</li>
+                        <li>Forks: {{ repo.forks_count }}</li>
+                        <li>Language: {{ repo.language }}</li>
+                    </ul>
+                    <a href="{{ repo.html_url }}" target="_blank">View Repository</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Spotify Section (Initially Empty) -->
+    <div class="spotify-section" id="spotify-section">
+        <h2>Your Top Spotify Tracks</h2>
+        <div class="track-list" id="track-list">
+            <!-- Spotify tracks will be dynamically inserted here -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{%endblock %}
+
+
+
+
+{%block script%}
+
+<script src="{% static 'exam_quest/js/navbar_toggle.js' %}"></script>
+{%block script_github%}
+<!-- Link to external JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'github_data/js/github_repos.js' %}"></script>
+{%endblock%}
+{%endblock%}
