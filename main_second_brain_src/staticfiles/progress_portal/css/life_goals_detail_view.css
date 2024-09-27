@@ -1,0 +1,39 @@
+.life_goal_detail {
+    margin-top: 6rem;
+    color: white;
+}
+
+.life_goal_header {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.life_goal_detail p {
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+}
+.life_goal_detail .project_label{
+    padding-left: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ff1d69;
+}
+
+.life_goal_detail ul { 
+    padding-left: 1.5rem;
+}
+
+.life_goal_detail ul li {
+    list-style: none;
+    font-size: 0.8rem;
+}
+
+.life_goal_detail ul li h3 {
+    /* margin: 5px 0; */
+}
+
+.life_goal_detail ul li p {
+    padding-left: 0px;
+}
+
+

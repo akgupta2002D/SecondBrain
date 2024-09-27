@@ -1,0 +1,89 @@
+/* github_dashboard.css */
+body {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 6rem;
+}
+
+.github-section, .spotify-section {
+    flex: 1;
+}
+
+.track-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.track-card {
+    background-color: #161b22;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.track-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+audio {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.stats, .best-repos, .commit-score {
+    margin-bottom: 40px;
+}
+
+.stat-box {
+    background-color: #161b22;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.best-repos .repo-list {
+    display: flex;
+    gap: 20px;
+}
+
+.repo-card {
+    background-color: #161b22;
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.repo-card h3 {
+    color: #58a6ff;
+}
+
+.repo-card a {
+    color: #3fb950;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.repo-card a:hover {
+    text-decoration: underline;
+}
+
+.commit-score {
+    background-color: #161b22;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
