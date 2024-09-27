@@ -70,6 +70,21 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+docs/build/
+.build/
+/build/
+docs/build//
+/main_second_brain_src/docs/build
+# Sphinx build directory
+/build/
+main_second_brain_src\docs\build
+
+# Optional: If you use a different build directory
+/_build/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
 
 # PyBuilder
 .pybuilder/
