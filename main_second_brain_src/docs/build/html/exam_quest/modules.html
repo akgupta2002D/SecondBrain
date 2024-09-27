@@ -304,16 +304,17 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="exam_quest.models.Question">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exam_quest.models.</span></span><span class="sig-name descname"><span class="pre">Question</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/exam_quest/models.html#Question"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#exam_quest.models.Question" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exam_quest.models.</span></span><span class="sig-name descname"><span class="pre">Question</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">difficulty</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">question_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">explanation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_active</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice_d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice_a_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice_b_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice_c_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice_d_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correct_choice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blanks_answer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/exam_quest/models.html#Question"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#exam_quest.models.Question" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
-<p>Represents a question under a specific topic.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="exam_quest.models.Question.clean">
+<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/exam_quest/models.html#Question.clean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#exam_quest.models.Question.clean" title="Link to this definition"></a></dt>
+<dd><p>Hook for doing any extra model-wide validation after clean() has been
+called on every field by self.clean_fields. Any ValidationError raised
+by this method will not be associated with a particular field; it will
+have a special-case association with the field defined by NON_FIELD_ERRORS.</p>
 </dd></dl>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="exam_quest.models.Answer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exam_quest.models.</span></span><span class="sig-name descname"><span class="pre">Answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/exam_quest/models.html#Answer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#exam_quest.models.Answer" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
-<p>Represents an answer to a specific question.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -339,9 +340,17 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="exam_quest.models.UserAnswer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exam_quest.models.</span></span><span class="sig-name descname"><span class="pre">UserAnswer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/exam_quest/models.html#UserAnswer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#exam_quest.models.UserAnswer" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exam_quest.models.</span></span><span class="sig-name descname"><span class="pre">UserAnswer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attempt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">question</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_choice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true_false_answer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_blanks_answer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_answer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_correct</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points_earned</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/exam_quest/models.html#UserAnswer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#exam_quest.models.UserAnswer" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
-<p>Represents an answer provided by a user for a specific question in an exam attempt.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="exam_quest.models.UserAnswer.clean">
+<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/exam_quest/models.html#UserAnswer.clean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#exam_quest.models.UserAnswer.clean" title="Link to this definition"></a></dt>
+<dd><p>Hook for doing any extra model-wide validation after clean() has been
+called on every field by self.clean_fields. Any ValidationError raised
+by this method will not be associated with a particular field; it will
+have a special-case association with the field defined by NON_FIELD_ERRORS.</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -407,12 +416,17 @@
 <li><a class="reference internal" href="#exam_quest.models.Class"><code class="docutils literal notranslate"><span class="pre">Class</span></code></a></li>
 <li><a class="reference internal" href="#exam_quest.models.Subject"><code class="docutils literal notranslate"><span class="pre">Subject</span></code></a></li>
 <li><a class="reference internal" href="#exam_quest.models.Topic"><code class="docutils literal notranslate"><span class="pre">Topic</span></code></a></li>
-<li><a class="reference internal" href="#exam_quest.models.Question"><code class="docutils literal notranslate"><span class="pre">Question</span></code></a></li>
-<li><a class="reference internal" href="#exam_quest.models.Answer"><code class="docutils literal notranslate"><span class="pre">Answer</span></code></a></li>
+<li><a class="reference internal" href="#exam_quest.models.Question"><code class="docutils literal notranslate"><span class="pre">Question</span></code></a><ul>
+<li><a class="reference internal" href="#exam_quest.models.Question.clean"><code class="docutils literal notranslate"><span class="pre">Question.clean()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#exam_quest.models.Exam"><code class="docutils literal notranslate"><span class="pre">Exam</span></code></a></li>
 <li><a class="reference internal" href="#exam_quest.models.ExamQuestion"><code class="docutils literal notranslate"><span class="pre">ExamQuestion</span></code></a></li>
 <li><a class="reference internal" href="#exam_quest.models.ExamAttempt"><code class="docutils literal notranslate"><span class="pre">ExamAttempt</span></code></a></li>
-<li><a class="reference internal" href="#exam_quest.models.UserAnswer"><code class="docutils literal notranslate"><span class="pre">UserAnswer</span></code></a></li>
+<li><a class="reference internal" href="#exam_quest.models.UserAnswer"><code class="docutils literal notranslate"><span class="pre">UserAnswer</span></code></a><ul>
+<li><a class="reference internal" href="#exam_quest.models.UserAnswer.clean"><code class="docutils literal notranslate"><span class="pre">UserAnswer.clean()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

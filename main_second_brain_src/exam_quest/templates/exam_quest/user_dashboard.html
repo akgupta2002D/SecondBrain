@@ -27,22 +27,7 @@
         <div class="exam_quest_navbar_items">
             <div id="quick_navigation">
                 <h3>Quick Navigation</h3>
-                <div class="dashboard-section">
-                    <h4>Classes</h4>
-                    <ul>
-                        {% for class in classes %}
-                        <li>{{ class.name }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="dashboard-section">
-                    <h4>Subjects</h4>
-                    <ul>
-                        {% for subject in subjects %}
-                        <li>{{ subject.name }} ({{ subject.class_level }})</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+
                 <div class="dashboard-section">
                     <h4>Topics</h4>
                     <ul>
@@ -56,10 +41,6 @@
 
                     <h4><a href="{% url 'exam_result_dashboard' %}" class="btn btn-primary">Exam Dashboard</a></h4>
 
-
-                </div>
-                <div class="dashboard-section">
-                    <h4><a href="{% url 'exam_dashboard' %}">Return to Dashboard</a></h4>
 
                 </div>
 

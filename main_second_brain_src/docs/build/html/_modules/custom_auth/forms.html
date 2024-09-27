@@ -336,8 +336,10 @@
         <span class="n">user</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">invitation_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;invitation_key&#39;</span><span class="p">)</span>
         <span class="n">invitation</span> <span class="o">=</span> <span class="n">InvitationKey</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">invitation_key</span><span class="p">)</span>
-        <span class="n">invitation</span><span class="o">.</span><span class="n">is_used</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">invitation</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">invitation</span><span class="o">.</span><span class="n">is_forever</span><span class="p">:</span>
+            <span class="n">invitation</span><span class="o">.</span><span class="n">is_used</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">invitation</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
         <span class="k">if</span> <span class="n">commit</span><span class="p">:</span>
             <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">user</span></div>

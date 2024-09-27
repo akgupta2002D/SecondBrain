@@ -6,6 +6,19 @@
 {%block css%}
 <link rel="stylesheet" href="{% static 'custom_auth/css/login.css' %}" />
 
+<style>
+    .popup {
+        position: fixed;
+        bottom: 40%;
+        right: 20px;
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(117, 123, 30, 0.2);
+        z-index: 1000;
+        border-radius: 10px;
+    }
+</style>
 {%endblock%}
 
 
@@ -19,6 +32,12 @@
         <button type="submit" class="button_submit">Login</button>
     </form>
     <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+</div>
+
+<div class="popup">
+    <p><strong>Guest Login:</strong></p>
+    <p>Username: guest</p>
+    <p>Password: urfunny123</p>
 </div>
 
 {%endblock %}

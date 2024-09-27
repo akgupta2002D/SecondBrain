@@ -1,0 +1,40 @@
+.app_cards_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Center the cards */
+    padding: 20px;
+}
+
+.app_card {
+    background-color: #f5f5f5; /* Light gray background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for elevation */
+    width: 200px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.app_card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.app_card_image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.app_card_name {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.app_card a {
+    text-decoration: none;
+    color: inherit; /* Inherit the color for text */
+}

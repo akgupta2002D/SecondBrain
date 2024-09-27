@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base_layout/css/landingpage.css' %}">
+    <title>Second Brain</title>
+</head>
+<style>
+    /* Include CSS directly in the HTML file */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        height: 100vh;
+    }
+
+    .split {
+        width: 50%;
+        height: 100%;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .left {
+        background-image: url("{% static '/base_layout/images/documentation.jpeg' %}");
+        /* Adjust path as needed */
+        color: white;
+    }
+
+    .right {
+        background-image: url("{% static '/base_layout/images/RegisterView.png' %}");
+        color: black;
+        /* Adjust path as needed */
+    }
+
+    .glass-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .black-button {
+        background-color: black;
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: transform 0.3s ease;
+    }
+
+    .black-button:hover {
+        transform: scale(1.1);
+    }
+
+    .footer {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 1.7rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer h2 {
+        color: #fff;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        /* Text outline for contrast */
+        margin-bottom: 20px;
+    }
+
+    .footer .right h2 {
+        color: #000;
+        text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+        /* Text outline for contrast */
+    }
+
+    .github-button {
+        background-color: #333;
+        color: white;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        margin-top: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 10px 0 #28a745;
+        max-width: 200px;
+        /* GitHub green glow */
+    }
+
+    .github-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px 5px #28a745;
+        /* Enhanced glow on hover */
+    }
+
+    /* Floating animation */
+    /* @keyframes float {
+
+        0%,
+        100% {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        50% {
+            transform: translateX(-50%) translateY(-10px);
+        } */
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+        body {
+            flex-direction: column;
+        }
+
+        .split {
+            width: 100%;
+            height: 50%;
+        }
+
+        .footer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 1.2rem;
+        }
+    }
+</style>
+
+<body>
+    <div class="split left">
+        <div class="glass-overlay">
+            <h1>See Documentation</h1>
+            <a href="/docs" class="black-button">Go to Docs</a>
+        </div>
+    </div>
+
+    <div class="split right">
+        <div class="glass-overlay">
+            <h1>Explore the App</h1>
+            <a href="/home" class="black-button">Explore the App!</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2>Welcome to Second Brain</h2>
+        <a href="https://github.com/akgupta2002D/SecondBrain" class="github-button">View on GitHub</a>
+    </div>
+
+    <script src="{% static 'base_layout/js/landingpage.js' %}"></script>
+</body>
+
+</html>

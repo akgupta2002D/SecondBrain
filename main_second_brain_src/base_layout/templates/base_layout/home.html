@@ -45,7 +45,7 @@
                 Ocr Extract
             </button>
         </a>
-        <a href="{% url 'exam_dashboard' %}">
+        <a href="{% url 'exam_result_dashboard' %}">
             <button class="navbar_button">
                 Exam Quest
             </button>
@@ -57,7 +57,7 @@
             </button>
         </a>
 
-        <a href="{% url 'create_question' %}">
+        <a href="{% url 'fetch_github_data' %}">
             <button class="navbar_button">
                 Socials DashBoard
             </button>
@@ -88,52 +88,52 @@
 
     <div class="app_content_wrapper">
         {% if user.is_authenticated %}
-        {% if user.is_student %}
-        <div class="card">
-            <div class="card_header">Take Exam!</div>
-            <div class="card_body">
-                <p><a href="{% url 'exam_result_dashboard' %}">
-                        <button style="color: black; font-size:large;" class="navbar_button">
-                            View Exams
-                        </button>
-                    </a>
-                </p>
-                <img style="width: 80%; " src="{% static 'base_layout/images/takeExamIcon.jpeg' %}"
-                    alt="Take Exam Icon">
 
+        <!-- Add cards dynamically for apps -->
+        <div class="app_cards_container">
+            {% for app in app_list %}
+            <div class="app_card">
+                <a href="{% url app.url_name %}">
+                    <div class="app_card_image">
+                        <img src="{% static app.icon_path %}" alt="{{ app.name }} Icon">
+                    </div>
+                    <div class="app_card_name">
+                        <p>{{ app.name }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {%else%}
+            <div class="card">
+                <div class="card_header">My Skills</div>
+                <div class="card_body">
+                    <p>Hey</p>
+                    <p>How are you?</p>
+                </div>
+            </div>
+
+            {%endif%}
+
+
+
+
+            <div class="profile_card">
+                <div class="profile_image_container">
+                    {% if user.profile and user.profile.image %}
+                    <img class="profile_image" src="{{ user.profile.image.url }}" alt="Profile image">
+                    {% else %}
+                    <p>Profile image not available.</p>
+                    {% endif %}
+                </div>
+                <div class="profile_text_container">
+                    <p class="profile_name"> Hey! {{user.firstname}} </p>
+
+                </div>
             </div>
         </div>
-        {%else%}
-        <div class="card">
-            <div class="card_header">My Skills</div>
-            <div class="card_body">
-                <p>Hey</p>
-                <p>How are you?</p>
-            </div>
-        </div>
-        {%endif%}
-        {%endif%}
+        {%endblock %}
 
-
-
-
-        <div class="profile_card">
-            <div class="profile_image_container">
-                {% if user.profile and user.profile.image %}
-                <img class="profile_image" src="{{ user.profile.image.url }}" alt="Profile image">
-                {% else %}
-                <p>Profile image not available.</p>
-                {% endif %}
-            </div>
-            <div class="profile_text_container">
-                <p class="profile_name"> {{user.firstname}} {{user.lastname}}</p>
-                <p class="profile_text">{{user.role}}</p>
-            </div>
-        </div>
     </div>
-    {%endblock %}
-
-</div>
 </div>
 
 {%endblock %}

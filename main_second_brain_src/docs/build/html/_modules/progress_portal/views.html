@@ -283,6 +283,8 @@
 <span class="sd">    project_detail:</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">LifeGoal</span><span class="p">,</span> <span class="n">Project</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span>
 <span class="kn">from</span> <span class="nn">asgiref.sync</span> <span class="kn">import</span> <span class="n">sync_to_async</span>
 <span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">redirect</span>
 <span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">viewsets</span>
@@ -291,10 +293,12 @@
 <span class="kn">from</span> <span class="nn">rest_framework.permissions</span> <span class="kn">import</span> <span class="n">IsAuthenticated</span>
 <span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">JsonResponse</span>
 <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">get_all_life_goals_sync</span><span class="p">,</span> <span class="n">get_projects_for_life_goal_sync</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
 
 
 <div class="viewcode-block" id="viewProgressPortal">
 <a class="viewcode-back" href="../../progress_portal/modules.html#progress_portal.views.viewProgressPortal">[docs]</a>
+<span class="nd">@login_required</span>
 <span class="k">def</span> <span class="nf">viewProgressPortal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Renders the progress portal dashboard.</span>
@@ -311,9 +315,10 @@
 
 <div class="viewcode-block" id="get_all_life_goals">
 <a class="viewcode-back" href="../../progress_portal/modules.html#progress_portal.views.get_all_life_goals">[docs]</a>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">get_all_life_goals</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">get_all_life_goals</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Asynchronously retrieves all life goals with their associated projects.</span>
+<span class="sd">    Retrieves all life goals with their associated projects.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        request (HttpRequest): The request object.</span>
@@ -321,10 +326,10 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        JsonResponse: A JSON response containing all life goals and their projects.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">life_goals</span> <span class="o">=</span> <span class="k">await</span> <span class="n">sync_to_async</span><span class="p">(</span><span class="nb">list</span><span class="p">)(</span><span class="n">LifeGoal</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+    <span class="n">life_goals</span> <span class="o">=</span> <span class="n">LifeGoal</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">life_goal</span> <span class="ow">in</span> <span class="n">life_goals</span><span class="p">:</span>
-        <span class="n">projects</span> <span class="o">=</span> <span class="k">await</span> <span class="n">sync_to_async</span><span class="p">(</span><span class="nb">list</span><span class="p">)(</span><span class="n">life_goal</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+        <span class="n">projects</span> <span class="o">=</span> <span class="n">life_goal</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
         <span class="n">projects_data</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">project</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
                           <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">project</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
                           <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">}</span> <span class="k">for</span> <span class="n">project</span> <span class="ow">in</span> <span class="n">projects</span><span class="p">]</span>
@@ -340,9 +345,10 @@
 
 <div class="viewcode-block" id="life_goal_detail">
 <a class="viewcode-back" href="../../progress_portal/modules.html#progress_portal.views.life_goal_detail">[docs]</a>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">life_goal_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">life_goal_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Asynchronously retrieves details of a specific life goal.</span>
+<span class="sd">    Retrieves details of a specific life goal.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        request (HttpRequest): The request object.</span>
@@ -351,13 +357,10 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        JsonResponse: A JSON response containing the life goal details and associated projects.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">life_goal</span> <span class="o">=</span> <span class="k">await</span> <span class="n">sync_to_async</span><span class="p">(</span><span class="n">LifeGoal</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">)(</span><span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">LifeGoal</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Life goal not found&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="mi">404</span><span class="p">)</span>
-
-    <span class="n">projects</span> <span class="o">=</span> <span class="k">await</span> <span class="n">sync_to_async</span><span class="p">(</span><span class="nb">list</span><span class="p">)(</span><span class="n">life_goal</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
-    <span class="n">projects_data</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">project</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">project</span><span class="o">.</span><span class="n">description</span> <span class="k">if</span> <span class="n">project</span><span class="o">.</span><span class="n">description</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">life_goal</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">LifeGoal</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
+    <span class="n">projects</span> <span class="o">=</span> <span class="n">life_goal</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">projects_data</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">project</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+                      <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">project</span><span class="o">.</span><span class="n">description</span> <span class="k">if</span> <span class="n">project</span><span class="o">.</span><span class="n">description</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
                       <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">}</span> <span class="k">for</span> <span class="n">project</span> <span class="ow">in</span> <span class="n">projects</span><span class="p">]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;life_goal&quot;</span><span class="p">:</span> <span class="n">life_goal</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
@@ -372,9 +375,10 @@
 
 <div class="viewcode-block" id="project_detail">
 <a class="viewcode-back" href="../../progress_portal/modules.html#progress_portal.views.project_detail">[docs]</a>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">project_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">project_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Asynchronously retrieves details of a specific project.</span>
+<span class="sd">    Retrieves details of a specific project.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        request (HttpRequest): The request object.</span>
@@ -383,12 +387,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        JsonResponse: A JSON response containing the project details and associated to-do items.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">project</span> <span class="o">=</span> <span class="k">await</span> <span class="n">sync_to_async</span><span class="p">(</span><span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">)(</span><span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">Project</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Project not found&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="mi">404</span><span class="p">)</span>
-
-    <span class="n">todo_items</span> <span class="o">=</span> <span class="k">await</span> <span class="n">sync_to_async</span><span class="p">(</span><span class="nb">list</span><span class="p">)(</span><span class="n">project</span><span class="o">.</span><span class="n">todo_items</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+    <span class="n">project</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Project</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
+    <span class="n">todo_items</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">todo_items</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
     <span class="n">todo_items_data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">{</span>
             <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>

@@ -324,11 +324,13 @@
     <span class="n">FAMILY</span> <span class="o">=</span> <span class="s1">&#39;family&#39;</span>
     <span class="n">FRIENDS</span> <span class="o">=</span> <span class="s1">&#39;friends&#39;</span>
     <span class="n">ACQUAINTANCE</span> <span class="o">=</span> <span class="s1">&#39;acquaintance&#39;</span>
+    <span class="n">STUDENT</span> <span class="o">=</span> <span class="s1">&#39;student&#39;</span>
 
     <span class="n">ROLE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
         <span class="p">(</span><span class="n">FAMILY</span><span class="p">,</span> <span class="s1">&#39;Family&#39;</span><span class="p">),</span>
         <span class="p">(</span><span class="n">FRIENDS</span><span class="p">,</span> <span class="s1">&#39;Friends&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="n">ACQUAINTANCE</span><span class="p">,</span> <span class="s1">&#39;Acquaintance&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">ACQUAINTANCE</span><span class="p">,</span> <span class="s1">&#39;Acquaintance&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="n">STUDENT</span><span class="p">,</span> <span class="s1">&#39;Student&#39;</span><span class="p">)</span>
     <span class="p">)</span>
 
     <span class="c1"># Add custom fields</span>
@@ -346,8 +348,6 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a string representation of the CustomUser instance.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            str: String representation of the user in the format &#39;firstname-role-username&#39;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">firstname</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">role</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s1">&#39;</span>
 
@@ -357,10 +357,18 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if the user has the family role.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            bool: True if the user is in the family role, False otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">FAMILY</span></div>
+
+
+<div class="viewcode-block" id="CustomUser.is_student">
+<a class="viewcode-back" href="../../custom_auth/modules.html#custom_auth.models.CustomUser.is_student">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_student</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if the user has the student role.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">STUDENT</span></div>
 
 
 <div class="viewcode-block" id="CustomUser.is_friends">
@@ -369,8 +377,6 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if the user has the friends role.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            bool: True if the user is in the friends role, False otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">FRIENDS</span></div>
 
@@ -381,8 +387,6 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if the user has the acquaintance role.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            bool: True if the user is in the acquaintance role, False otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ACQUAINTANCE</span></div>
 </div>
@@ -401,6 +405,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">key</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">is_used</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">is_forever</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>

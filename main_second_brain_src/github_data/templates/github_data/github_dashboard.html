@@ -61,14 +61,6 @@
         </div>
     </div>
 
-    <!-- Spotify Section (Initially Empty) -->
-    <div class="spotify-section" id="spotify-section">
-        <h2>Your Top Spotify Tracks</h2>
-        <div class="track-list" id="track-list">
-            <!-- Spotify tracks will be dynamically inserted here -->
-        </div>
-    </div>
-</div>
 
 
 
@@ -77,18 +69,16 @@
 
 
 
-
-{%endblock %}
-
+    {%endblock %}
 
 
 
-{%block script%}
 
-<script src="{% static 'exam_quest/js/navbar_toggle.js' %}"></script>
-{%block script_github%}
-<!-- Link to external JS -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="{% static 'github_data/js/github_repos.js' %}"></script>
-{%endblock%}
-{%endblock%}
+    {%block script%}
+
+    <script src="{% static 'exam_quest/js/navbar_toggle.js' %}"></script>
+    {%block script_github%}
+    <!-- Link to external JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {%endblock%}
+    {%endblock%}
