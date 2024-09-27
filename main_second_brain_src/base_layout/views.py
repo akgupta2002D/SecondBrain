@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.shortcuts import render, HttpResponse
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -30,3 +31,7 @@ def landingpage(request):
         "user": user
     }
     return render(request, "base_layout/landingpage.html", context)
+
+
+def sphinx_docs(request):
+    return render(request, 'docs/index.html')
