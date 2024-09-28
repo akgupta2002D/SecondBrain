@@ -28,8 +28,6 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # settings.py
 PARENT_DIR = os.path.dirname(BASE_DIR)
 
-# Correct path to Tesseract executable from .env
-TESSERACT_CMD = os.path.join(PARENT_DIR, env('TESSERACT_CMD_PATH'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -41,14 +39,6 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
-
-# Github Token
-GITHUB_TOKEN = env('GITHUB_TOKEN')
-
-# Spotify API credentials
-SPOTIFY_CLIENT_ID = env('SPOTIFY_CLIENT_ID')
-SPOTIFY_CLIENT_SECRET = env('SPOTIFY_CLIENT_SECRET')
-SPOTIFY_REDIRECT_URI = env('SPOTIFY_REDIRECT_URI')
 
 
 # Application definition
@@ -176,13 +166,3 @@ DOCS_ROOT = os.path.join(BASE_DIR, 'docs/build/html')
 #     'django.contrib.auth.backends.ModelBackend',
 #     'allauth.account.auth_backends.AuthenticationBackend',
 # )
-
-SITE_ID = 1
-
-SOCIALACCOUNT_PROVIDERS = {
-    'spotify': {
-        'SCOPE': ['user-top-read'],
-        'AUTH_PARAMS': {'show_dialog': True},
-        'OAUTH_PKCE_ENABLED': True,
-    }
-}
