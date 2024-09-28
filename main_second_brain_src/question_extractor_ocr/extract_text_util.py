@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 # pytesseract.pytesseract.tesseract_cmd = os.path.join(
 #     tesseract_dir, 'tesseract.exe')
 
-pytesseract.pytesseract.tesseract_cmd = settings.TESSERACT_CMD
+# pytesseract.pytesseract.tesseract_cmd = settings.TESSERACT_CMD
 
 
 def extract_text_from_image(file_path, language='nep+eng'):
